@@ -4,15 +4,5 @@ using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("Hehe, it's working!!!");
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
