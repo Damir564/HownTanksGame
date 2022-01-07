@@ -7,18 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float m_movementSpeed = 1f; //Movement Speed of the Player
-    public float MovementSpeed
-    {
-        get => m_movementSpeed;
-        set => m_movementSpeed = value;
-    }
     [SerializeField]
-    private Vector2 m_movementVector; //Movement Axis
-    public Vector2 MovementVector
-    {
-        get => m_movementVector;
-        set => m_movementVector = value;
-    }
+    private Vector2 m_movement;         //Movement Axis
     [SerializeField]
     private Rigidbody2D rb;    //Player Rigidbody Component
 
@@ -31,13 +21,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_movementVector.x = Input.GetAxis("Horizontal");
-        m_movementVector.y = Input.GetAxis("Vertical");
-        m_movementVector = m_movementVector.normalized;
+        m_movement.x = Input.GetAxis("Horizontal");
+        m_movement.y = Input.GetAxis("Vertical");
+        m_movement = m_movement.normalized;
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + m_movementVector * m_movementSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + m_movement * m_movementSpeed * Time.fixedDeltaTime);
+
+        if (m_movement != Vector2.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, m_movement);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 9999 * Time.fixedDeltaTime);  //used int, not float. If before or after MovePosition
+        }
     }
 }
