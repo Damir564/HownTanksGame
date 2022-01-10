@@ -18,6 +18,12 @@ public class PlayerController : MonoBehaviour
     private GameObject body;
     [SerializeField]
     private GameObject head;
+    [SerializeField]
+    private GameObject bulletPrefab;
+    [SerializeField]
+    private Transform bulletExit;
+    [SerializeField]
+    private float bulletForce;
     // [SerializeField]
     // private GameObject LInCircle;
     // private Vector2 m_LInCircleStartPos;
@@ -143,8 +149,17 @@ public class PlayerController : MonoBehaviour
         Quaternion toHeadRotation = Quaternion.LookRotation(Vector3.forward, m_aiming);
         head.transform.rotation = Quaternion.RotateTowards(head.transform.rotation, toHeadRotation, Time.fixedDeltaTime * m_rotationSpeedHead);
         if (m_aiming.sqrMagnitude >= m_shootZone){
-            Debug.Log("Shoot");
+            Shooting();
         }
+    }
+
+    private void Shooting()
+    {
+        Debug.Log("Shooting");
+        GameObject bullet = Instantiate(bulletPrefab, bulletExit.position, bulletExit.rotation);
+        Rigidbody2D bullet_rb = bullet.GetComponent<Rigidbody2D>();
+        bullet_rb.AddForce(bulletExit.up * bulletForce, ForceMode2D.Impulse);
+        Destroy(bullet, 5f);
     }
 
 }
