@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
 
         playerInputAction.Player.Movement.canceled += _ => m_isMovePressed = false;
         // PC
-        // playerInputAction.Player.Movement2.performed += ctx => MovementEvent(ctx.ReadValue<Vector2>());
-        // playerInputAction.Player.Movement2.canceled += _ => m_isMovePressed = false;
+        playerInputAction.Player.Movement2.performed += ctx => MovementEvent(ctx.ReadValue<Vector2>());
+        playerInputAction.Player.Movement2.canceled += _ => m_isMovePressed = false;
     }
 
     // Start is called before the first frame update
