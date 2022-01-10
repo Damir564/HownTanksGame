@@ -13,15 +13,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Movement2",
-                    "type": "Value",
-                    "id": "c6b04cf2-e7d3-4708-af85-7692e5440ed1",
-                    "expectedControlType": "Stick",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -43,7 +34,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement2",
+                    "action": "Movement",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -54,7 +45,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "Movement2",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -65,7 +56,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "Movement2",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -76,7 +67,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "Movement2",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -87,7 +78,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "Movement2",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
