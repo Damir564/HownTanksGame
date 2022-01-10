@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Aiming",
+                    "type": "Value",
+                    "id": "e8b2d8be-38ba-4623-afe4-18b471ff6141",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Movement2",
                     "type": "Value",
                     "id": "c6b04cf2-e7d3-4708-af85-7692e5440ed1",
@@ -90,6 +99,17 @@
                     "action": "Movement2",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "3db47f6b-7448-4b46-acd6-af1f63bd1210",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "BuildScheme",
+                    "action": "Aiming",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
