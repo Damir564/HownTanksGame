@@ -47,7 +47,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -55,7 +55,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1195283242032655753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb6b56e66febb842bd42708f0ebb009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerValues: {fileID: 11400000, guid: 2106cbf4d3b013f4197c204f345abe34, type: 2}
   m_movementSpeed: 1
   m_rotationSpeedBody: 1200
   m_rotationSpeedHead: 1200
@@ -75,9 +76,9 @@ MonoBehaviour:
   rb: {fileID: 1195283242032655754}
   body: {fileID: 4103006446971687943}
   head: {fileID: 4103006447002872477}
-  bulletPrefab: {fileID: 5711901108360211174, guid: 881f19ad950da824da0d6c54cf2ada1c, type: 3}
+  m_bullerDestroyTime: 9
   bulletExit: {fileID: 5060913024911539462}
-  bulletForce: 10
+  m_bulletForce: 10
 --- !u!212 &5603974930922952499
 SpriteRenderer:
   m_ObjectHideFlags: 0

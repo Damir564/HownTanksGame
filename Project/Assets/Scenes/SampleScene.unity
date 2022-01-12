@@ -2080,37 +2080,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1195283242032655754, guid: 7630bce734e36444b85617755d2ae8f9, type: 3}
-      propertyPath: m_Mass
-      value: 5000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1195283242032655754, guid: 7630bce734e36444b85617755d2ae8f9, type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1195283242032655754, guid: 7630bce734e36444b85617755d2ae8f9, type: 3}
-      propertyPath: m_AngularDrag
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1195283242032655754, guid: 7630bce734e36444b85617755d2ae8f9, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1195283242032655754, guid: 7630bce734e36444b85617755d2ae8f9, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1195283242032655754, guid: 7630bce734e36444b85617755d2ae8f9, type: 3}
-      propertyPath: m_UseFullKinematicContacts
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1195283242032655757, guid: 7630bce734e36444b85617755d2ae8f9, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3421426116935120645, guid: 7630bce734e36444b85617755d2ae8f9, type: 3}
-      propertyPath: m_EdgeRadius
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7630bce734e36444b85617755d2ae8f9, type: 3}
