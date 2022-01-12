@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour//, PlayerInputActions.IPlayerActions
 {
     [SerializeField]
-    private PlayerSO m_playerValues;
+    private PlayerSO m_playerValues; // = default   ???
     private WeaponSO m_weaponValues;
 
     private Rigidbody2D m_rb;
@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour//, PlayerInputActions.IPlayerActio
     [SerializeField]
     private Transform m_bulletExit;
 
-    private PlayerInputActions m_playerInputAction;
     private bool m_isMovePressed = false;
     private bool m_isAimingPressed = false;
     private Vector2 m_movement;         //Movement Axis
@@ -24,60 +23,48 @@ public class PlayerController : MonoBehaviour//, PlayerInputActions.IPlayerActio
 
     private void Awake()
     {
-        m_playerInputAction = new PlayerInputActions();
-
-        m_playerInputAction.Player.Movement.performed += ctx => MovementEvent(ctx.ReadValue<Vector2>());
-        m_playerInputAction.Player.Movement.canceled += _ => m_isMovePressed = false;
-
-        m_playerInputAction.Player.Aiming.performed += ctx => AimingEvent(ctx.ReadValue<Vector2>());
-        m_playerInputAction.Player.Aiming.canceled += _ => m_isAimingPressed = false;
-
-
-        // PC
-        m_playerInputAction.Player.Movement2.performed += ctx => MovementEvent(ctx.ReadValue<Vector2>());
-        m_playerInputAction.Player.Movement2.canceled += _ => m_isMovePressed = false;
-
-        m_weaponValues = m_playerValues.WeaponSOs[m_playerValues.DEFAULT_WEAPON];
+        m_weaponValues = m_playerValues.WeaponSOs[PlayerSO.DEFAULT_WEAPON];
         m_rb = GetComponent<Rigidbody2D>();
     }
 
-    // public void OnMovement(InputAction.CallbackContext ctx)
-    // {
-
-    // }
-
-    // public void OnAiming(InputAction.CallbackContext ctx)
-    // {
-
-    // }
-
-    // public void OnMovement2(InputAction.CallbackContext ctx)
-    // {
-
-    // }
 
 
 
-
-    private void MovementEvent(Vector2 value)
+    private void MovementPerformedEvent(Vector2 value)
     {
         m_movement = value;
         m_isMovePressed = true;
     }
 
-    private void AimingEvent(Vector2 value)
+    private void MovementCanceledEvent()
+    {
+        m_isMovePressed = false;
+    }
+
+    private void AimingPerformedEvent(Vector2 value)
     {
         m_aiming = value;
         m_isAimingPressed = true;
     }
 
+    private void AimingCanceledEvent()
+    {
+        m_isAimingPressed = false;
+    }
+
     private void OnEnable()
     {
-        m_playerInputAction.Enable();
+        m_playerValues.m_movementPerformedEvent += MovementPerformedEvent;
+        m_playerValues.m_movementCanceledEvent += MovementCanceledEvent;
+        m_playerValues.m_aimingPerformedEvent += AimingPerformedEvent;
+        m_playerValues.m_aimingCanceledEvent += AimingCanceledEvent;
     }
     private void OnDisable()
     {
-        m_playerInputAction.Disable();
+        m_playerValues.m_movementPerformedEvent -= MovementPerformedEvent;
+        m_playerValues.m_movementCanceledEvent -= MovementCanceledEvent;
+        m_playerValues.m_aimingPerformedEvent -= AimingPerformedEvent;
+        m_playerValues.m_aimingCanceledEvent -= AimingCanceledEvent;
     }
 
     void FixedUpdate()
