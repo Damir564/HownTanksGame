@@ -9,6 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b716cc8cd7d6a8f4da574f390a2cd8cf, type: 3}
-  m_Name: SimpleBulletSO
+  m_Script: {fileID: 11500000, guid: 4877f8ad6244c624091755f8dde2537f, type: 3}
+  m_Name: Simple
   m_EditorClassIdentifier: 
+  m_bulletPrefab: {fileID: 5711901108360211174, guid: 881f19ad950da824da0d6c54cf2ada1c, type: 3}
+  m_bulletForce: 10
+  m_bulletDestroyTime: 9

@@ -5,33 +5,18 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour//, PlayerInputActions.IPlayerActions
 {
     [SerializeField]
-    private PlayerSO playerValues;
+    private PlayerSO m_playerValues;
+    private WeaponSO m_weaponValues;
 
+    private Rigidbody2D m_rb;
     [SerializeField]
-    private float m_movementSpeed;
+    private GameObject m_body;
     [SerializeField]
-    private float m_rotationSpeedBody;
+    private GameObject m_head;
     [SerializeField]
-    private float m_rotationSpeedHead;
-    [SerializeField]
-    private float m_shootZone;
-    [SerializeField]
-    private Rigidbody2D rb;
-    [SerializeField]
-    private GameObject body;
-    [SerializeField]
-    private GameObject head;
+    private Transform m_bulletExit;
 
-    [SerializeField]
-    private float m_bulletDestroyTime;
-    // [SerializeField]
-    // private GameObject bulletPrefab;
-    [SerializeField]
-    private Transform bulletExit;
-    [SerializeField]
-    private float m_bulletForce;
-
-    private PlayerInputActions playerInputAction;
+    private PlayerInputActions m_playerInputAction;
     private bool m_isMovePressed = false;
     private bool m_isAimingPressed = false;
     private Vector2 m_movement;         //Movement Axis
@@ -39,18 +24,21 @@ public class PlayerController : MonoBehaviour//, PlayerInputActions.IPlayerActio
 
     private void Awake()
     {
-        playerInputAction = new PlayerInputActions();
+        m_playerInputAction = new PlayerInputActions();
 
-        playerInputAction.Player.Movement.performed += ctx => MovementEvent(ctx.ReadValue<Vector2>());
-        playerInputAction.Player.Movement.canceled += _ => m_isMovePressed = false;
+        m_playerInputAction.Player.Movement.performed += ctx => MovementEvent(ctx.ReadValue<Vector2>());
+        m_playerInputAction.Player.Movement.canceled += _ => m_isMovePressed = false;
 
-        playerInputAction.Player.Aiming.performed += ctx => AimingEvent(ctx.ReadValue<Vector2>());
-        playerInputAction.Player.Aiming.canceled += _ => m_isAimingPressed = false;
+        m_playerInputAction.Player.Aiming.performed += ctx => AimingEvent(ctx.ReadValue<Vector2>());
+        m_playerInputAction.Player.Aiming.canceled += _ => m_isAimingPressed = false;
 
 
         // PC
-        playerInputAction.Player.Movement2.performed += ctx => MovementEvent(ctx.ReadValue<Vector2>());
-        playerInputAction.Player.Movement2.canceled += _ => m_isMovePressed = false;
+        m_playerInputAction.Player.Movement2.performed += ctx => MovementEvent(ctx.ReadValue<Vector2>());
+        m_playerInputAction.Player.Movement2.canceled += _ => m_isMovePressed = false;
+
+        m_weaponValues = m_playerValues.WeaponSOs[m_playerValues.DEFAULT_WEAPON];
+        m_rb = GetComponent<Rigidbody2D>();
     }
 
     // public void OnMovement(InputAction.CallbackContext ctx)
@@ -85,11 +73,11 @@ public class PlayerController : MonoBehaviour//, PlayerInputActions.IPlayerActio
 
     private void OnEnable()
     {
-        playerInputAction.Enable();
+        m_playerInputAction.Enable();
     }
     private void OnDisable()
     {
-        playerInputAction.Disable();
+        m_playerInputAction.Disable();
     }
 
     void FixedUpdate()
@@ -106,16 +94,16 @@ public class PlayerController : MonoBehaviour//, PlayerInputActions.IPlayerActio
 
     private void MovementHandler()
     {
-        rb.MovePosition(rb.position + m_movement * m_movementSpeed * Time.fixedDeltaTime);
+        m_rb.MovePosition(m_rb.position + m_movement * m_playerValues.MovementSpeed * Time.fixedDeltaTime);
         Quaternion toBodyRotation = Quaternion.LookRotation(Vector3.forward, m_movement);
-        body.transform.rotation = Quaternion.RotateTowards(body.transform.rotation, toBodyRotation, Time.fixedDeltaTime * m_rotationSpeedBody);
+        m_body.transform.rotation = Quaternion.RotateTowards(m_body.transform.rotation, toBodyRotation, Time.fixedDeltaTime * m_playerValues.RotationSpeedBody);
     }
 
     private void AimingHandler()
     {
         Quaternion toHeadRotation = Quaternion.LookRotation(Vector3.forward, m_aiming);
-        head.transform.rotation = Quaternion.RotateTowards(head.transform.rotation, toHeadRotation, Time.fixedDeltaTime * m_rotationSpeedHead);
-        if (m_aiming.sqrMagnitude >= m_shootZone)
+        m_head.transform.rotation = Quaternion.RotateTowards(m_head.transform.rotation, toHeadRotation, Time.fixedDeltaTime * m_playerValues.RotationSpeedHead);
+        if (m_aiming.sqrMagnitude >= m_playerValues.ShootZone)
         {
             Shooting();
         }
@@ -124,10 +112,10 @@ public class PlayerController : MonoBehaviour//, PlayerInputActions.IPlayerActio
     private void Shooting()
     {
         // GameObject bullet = Instantiate(bulletPrefab, bulletExit.position, bulletExit.rotation);
-        // GameObject bullet = Instantiate(playerValues.bulletPrefab, bulletExit.position, bulletExit.rotation);
-        // Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-        // bulletRb.AddForce(bulletExit.up * m_bulletForce, ForceMode2D.Impulse);
-        // Destroy(bullet, m_bulletDestroyTime);
+        GameObject bullet = Instantiate(m_weaponValues.BulletPrefab, m_bulletExit.position, m_bulletExit.rotation);
+        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+        bulletRb.AddForce(m_bulletExit.up * m_weaponValues.BulletForce, ForceMode2D.Impulse);
+        Destroy(bullet, m_weaponValues.BulletDestroyTime);
     }
 
 }

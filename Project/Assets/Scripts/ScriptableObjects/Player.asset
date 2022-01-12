@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cdc661f2ec72964492141e8726fc988, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  m_bulletSOs:
-  - {fileID: 11400000, guid: b9beb623e97d1f44d83016181084261d, type: 2}
+  DEFAULT_WEAPON: 0
+  m_weaponSOs:
+  - {fileID: 11400000, guid: 1763658f03549be4a9b4f97cd6deda4f, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  m_movementSpeed: 3
+  m_rotationSpeedBody: 1200
+  m_rotationSpeedHead: 1200
+  m_shootZone: 0.86
