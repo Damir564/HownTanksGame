@@ -155,11 +155,10 @@ public class PlayerController : MonoBehaviour
 
     private void Shooting()
     {
-        Debug.Log("Shooting");
         GameObject bullet = Instantiate(bulletPrefab, bulletExit.position, bulletExit.rotation);
         Rigidbody2D bullet_rb = bullet.GetComponent<Rigidbody2D>();
         bullet_rb.AddForce(bulletExit.up * bulletForce, ForceMode2D.Impulse);
-        Destroy(bullet, 5f);
+        Destroy(bullet, 9f);
     }
 
 }

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ObjectsHit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // private Transform soundPos;
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.tag == "Projectile")
+        {
+            // soundPos = collision.transform;
+            // Debug.Log("soundPos = " + soundPos);
+            Destroy(collision.gameObject);
+        }
     }
 }
