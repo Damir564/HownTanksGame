@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/BulletSO", order = 2)]
+[CreateAssetMenu(menuName = "ScriptableObjects/WeaponSO", order = 2)]
 public class WeaponSO : ScriptableObject
 {
     [SerializeField]
@@ -9,6 +9,8 @@ public class WeaponSO : ScriptableObject
     private float m_bulletForce;
     [SerializeField]
     private float m_bulletDestroyTime;
+    [SerializeField]
+    private AudioSource m_bulletShootSound;
 
     public GameObject BulletPrefab
     {
@@ -21,5 +23,9 @@ public class WeaponSO : ScriptableObject
     public float BulletDestroyTime
     {
         get => m_bulletDestroyTime;
+    }
+    public AudioSource BulletShootSound
+    {
+        get => m_bulletShootSound;
     }
 }
