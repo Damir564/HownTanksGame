@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 //Carry out do we need a FixedUpdate() or just can use Update()  <-- to-do thing
 public class PlayerController : MonoBehaviour//, PlayerInputActions.IPlayerActions
 {
@@ -100,7 +101,8 @@ public class PlayerController : MonoBehaviour//, PlayerInputActions.IPlayerActio
     {
         // GameObject bullet = Instantiate(bulletPrefab, bulletExit.position, bulletExit.rotation);
         GameObject bullet = Instantiate(m_weaponValues.BulletPrefab, m_bulletExit.position, m_bulletExit.rotation);
-        m_weaponValues.BulletShootSound.Play();
+        // m_weaponValues.BulletShootSound();
+        //m_weaponValues.BulletShootSound.Play();
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
         bulletRb.AddForce(m_bulletExit.up * m_weaponValues.BulletForce, ForceMode2D.Impulse);
         Destroy(bullet, m_weaponValues.BulletDestroyTime);

@@ -15,4 +15,6 @@ MonoBehaviour:
   m_bulletPrefab: {fileID: 5711901108360211174, guid: 881f19ad950da824da0d6c54cf2ada1c, type: 3}
   m_bulletForce: 10
   m_bulletDestroyTime: 9
-  m_bulletShootSound: {fileID: 11397657935677294, guid: 4dcbb68e65eafbb4486697a9563321d4, type: 3}
+  au: {fileID: 11397657935677294, guid: 4dcbb68e65eafbb4486697a9563321d4, type: 3}
+  auclp: {fileID: 8300000, guid: 7f785c32f1a4bd34abd6e76e0484ef5c, type: 3}
+  soundEmitter: {fileID: 8897268673646314142, guid: 6bee4313445ef954d8561ced7641dff8, type: 3}
