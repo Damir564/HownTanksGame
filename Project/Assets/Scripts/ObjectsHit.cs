@@ -14,7 +14,6 @@ public class ObjectsHit : MonoBehaviour
         if (collision.gameObject.tag == "Projectile")
         {
             soundPos = collision.transform.position;
-            Debug.Log(soundPos);
             AudioSource.PlayClipAtPoint(m_simpleBulletClip, soundPos, 0.5f);
             // m_audioSource.transform.position = soundPos;
             // m_audioSource.PlayOneShot(m_simpleBulletClip);
