@@ -834,7 +834,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec32c00f1ec1be46a5e1b6680cd0ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_audioSource: {fileID: 11397657935677294, guid: 4dcbb68e65eafbb4486697a9563321d4, type: 3}
   m_simpleBulletClip: {fileID: 8300000, guid: 7f785c32f1a4bd34abd6e76e0484ef5c, type: 3}
 --- !u!4 &782274771
 Transform:

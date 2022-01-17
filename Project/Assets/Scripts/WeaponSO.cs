@@ -9,14 +9,10 @@ public class WeaponSO : ScriptableObject
     private float m_bulletForce;
     [SerializeField]
     private float m_bulletDestroyTime;
-    // [SerializeField]
-    // private AudioClip m_shootAudioClip;
-    // [SerializeField]
-    // private AudioConfigurationSO m_shootAudioConfiguration;
-    public AudioSource au;
-    public AudioClip auclp;
     [SerializeField]
-    public SoundEmitter soundEmitter;
+    private AudioClip m_bulletSoundShoot;
+    [SerializeField]
+    private float m_weaponFireRate;
 
     public GameObject BulletPrefab
     {
@@ -30,16 +26,12 @@ public class WeaponSO : ScriptableObject
     {
         get => m_bulletDestroyTime;
     }
-    // public AudioClip ShootAudioClip
-    // {
-    //     get => m_shootAudioClip;
-    // }
-    // public AudioConfigurationSO ShootAudioConfiguration
-    // {
-    //     get => m_shootAudioConfiguration;
-    // }
-    public void BulletShootSound()
+    public AudioClip BulletSoundShoot
     {
-        au.PlayOneShot(auclp);
+        get => m_bulletSoundShoot;
+    }
+    public float WeaponFireRate
+    {
+        get => m_weaponFireRate;
     }
 }
