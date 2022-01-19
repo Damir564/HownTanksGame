@@ -1,10 +1,6 @@
 using UnityEngine;
-using System.Collections;
-using UnityEngine.InputSystem;
 
-
-//Carry out do we need a FixedUpdate() or just can use Update()  <-- to-do thing
-public class PlayerController : MonoBehaviour//, PlayerInputActions.IPlayerActions
+public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private PlayerSO m_playerValues; // = default   ???
@@ -23,7 +19,9 @@ public class PlayerController : MonoBehaviour//, PlayerInputActions.IPlayerActio
     private Vector2 m_movement;         //Movement Axis
     private Vector2 m_aiming;           //Aiming Axis
 
-    private bool m_courutineShoot = false;
+    private float m_nextFireTime = 0f;
+    [SerializeField]
+    private AudioSource m_audioSource;
 
     private void Awake()
     {
@@ -94,40 +92,21 @@ public class PlayerController : MonoBehaviour//, PlayerInputActions.IPlayerActio
     {
         Quaternion toHeadRotation = Quaternion.LookRotation(Vector3.forward, m_aiming);
         m_head.transform.rotation = Quaternion.RotateTowards(m_head.transform.rotation, toHeadRotation, Time.fixedDeltaTime * m_playerValues.RotationSpeedHead);
-        if (m_aiming.sqrMagnitude >= m_playerValues.ShootZone & !m_courutineShoot)
+        if (m_aiming.sqrMagnitude >= m_playerValues.ShootZone)
         {
-            // Shooting();
-            StartCoroutine(ShootingCoroutine());
-        }
-        else if (m_courutineShoot) {
-            StopCoroutine(ShootingCoroutine());
-            m_courutineShoot = false;
+            Shooting();
         }
     }
 
-    // private void Shooting()
-    // {
-    //     // GameObject bullet = Instantiate(bulletPrefab, bulletExit.position, bulletExit.rotation);
-    //     GameObject bullet = Instantiate(m_weaponValues.BulletPrefab, m_bulletExit.position, m_bulletExit.rotation);
-    //     AudioSource.PlayClipAtPoint(m_weaponValues.BulletSoundShoot, m_bulletExit.position, 0.5f);
-    //     Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-    //     bulletRb.AddForce(m_bulletExit.up * m_weaponValues.BulletForce, ForceMode2D.Impulse);
-    //     Destroy(bullet, m_weaponValues.BulletDestroyTime);
-    // }
-    IEnumerator ShootingCoroutine()
-	{
-        while (m_aiming.sqrMagnitude >= m_playerValues.ShootZone)
-        {
-            GameObject bullet = Instantiate(m_weaponValues.BulletPrefab, m_bulletExit.position, m_bulletExit.rotation);
-            AudioSource.PlayClipAtPoint(m_weaponValues.BulletSoundShoot, m_bulletExit.position, 0.5f);
-            Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-            bulletRb.AddForce(m_bulletExit.up * m_weaponValues.BulletForce, ForceMode2D.Impulse);
-            Destroy(bullet, m_weaponValues.BulletDestroyTime);
-            Debug.Log(Time.time);
-            yield return new WaitForSeconds(m_weaponValues.WeaponFireRate);
-        }
-        m_courutineShoot = true;
-	}
-    
-
+    private void Shooting()
+    {
+        if (Time.time < m_nextFireTime)
+            return;
+        m_nextFireTime = Time.time + m_weaponValues.WeaponFireRate;
+        m_audioSource.PlayOneShot(m_weaponValues.BulletSoundShoot);
+        GameObject bullet = Instantiate(m_weaponValues.BulletPrefab, m_bulletExit.position, m_bulletExit.rotation);
+        Rigidbody2D bulletRb = bullet.GetComponentInChildren<Rigidbody2D>();
+        bulletRb.AddForce(m_bulletExit.up * m_weaponValues.BulletForce, ForceMode2D.Impulse);
+        Destroy(bullet, m_weaponValues.BulletDestroyTime);
+    }
 }

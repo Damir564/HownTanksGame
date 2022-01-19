@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectsHit : MonoBehaviour
 {
-    private Vector3 soundPos;
     [SerializeField]
     private AudioClip m_simpleBulletClip;
 
@@ -13,11 +10,11 @@ public class ObjectsHit : MonoBehaviour
         // if will be needed: audioclip by bullet tag
         if (collision.gameObject.tag == "Projectile")
         {
-            soundPos = collision.transform.position;
-            AudioSource.PlayClipAtPoint(m_simpleBulletClip, soundPos, 0.5f);
-            // m_audioSource.transform.position = soundPos;
-            // m_audioSource.PlayOneShot(m_simpleBulletClip);
-            Destroy(collision.gameObject);
+            Vector3 soundPos = collision.transform.position;
+            collision.gameObject.SetActive(false);
+            Transform bulletParent = collision.transform.parent;
+            collision.transform.parent.GetChild(1).gameObject.SetActive(true);
+            Destroy(bulletParent.gameObject, 0.2f);
         }
     }
 }
