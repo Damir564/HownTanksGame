@@ -10,6 +10,8 @@ public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
     public event UnityAction m_movementCanceledEvent;
     public event UnityAction<Vector2> m_aimingPerformedEvent;
     public event UnityAction m_aimingCanceledEvent;
+    public event UnityAction m_reloadingPerformedEvent;
+    // public event UnityAction m_reloadingCanceledEvent;
 
     private GameInput m_gameInput;
 
@@ -65,6 +67,13 @@ public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
             m_aimingCanceledEvent.Invoke();
     }
 
+    public void OnReloading(InputAction.CallbackContext ctx)
+    {
+        if (m_reloadingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
+            m_reloadingPerformedEvent.Invoke();
+        // if (m_reloadingCanceledEvent != null && ctx.phase == InputActionPhase.Canceled)
+        //     m_reloadingCanceledEvent.Invoke();
+    }
 
     // Weapon
     public enum Weapons
