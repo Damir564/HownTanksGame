@@ -1,5 +1,5 @@
 {
-    "name": "GameInput",
+    "name": "PlayerInputActions",
     "maps": [
         {
             "name": "Player",
@@ -22,15 +22,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Reloading",
-                    "type": "Button",
-                    "id": "8aedaaaa-00bd-46fc-ab66-31e8f309f6fa",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
                 {
                     "name": "Movement2",
@@ -117,17 +108,6 @@
                     "processors": "",
                     "groups": "BuildScheme",
                     "action": "Aiming",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "47e0d4c4-a2cb-43c8-8bbd-28f858e185c9",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "BuildScheme",
-                    "action": "Reloading",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

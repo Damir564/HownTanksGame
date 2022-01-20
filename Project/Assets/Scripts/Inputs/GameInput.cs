@@ -46,15 +46,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Reloading"",
-                    ""type"": ""Button"",
-                    ""id"": ""8aedaaaa-00bd-46fc-ab66-31e8f309f6fa"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Movement2"",
                     ""type"": ""Value"",
                     ""id"": ""c6b04cf2-e7d3-4708-af85-7692e5440ed1"",
@@ -141,17 +132,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""action"": ""Aiming"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""47e0d4c4-a2cb-43c8-8bbd-28f858e185c9"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""BuildScheme"",
-                    ""action"": ""Reloading"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -195,7 +175,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Aiming = m_Player.FindAction("Aiming", throwIfNotFound: true);
-        m_Player_Reloading = m_Player.FindAction("Reloading", throwIfNotFound: true);
         m_Player_Movement2 = m_Player.FindAction("Movement2", throwIfNotFound: true);
     }
 
@@ -258,7 +237,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Aiming;
-    private readonly InputAction m_Player_Reloading;
     private readonly InputAction m_Player_Movement2;
     public struct PlayerActions
     {
@@ -266,7 +244,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         public PlayerActions(@GameInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Aiming => m_Wrapper.m_Player_Aiming;
-        public InputAction @Reloading => m_Wrapper.m_Player_Reloading;
         public InputAction @Movement2 => m_Wrapper.m_Player_Movement2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -283,9 +260,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Aiming.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAiming;
                 @Aiming.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAiming;
                 @Aiming.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAiming;
-                @Reloading.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloading;
-                @Reloading.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloading;
-                @Reloading.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloading;
                 @Movement2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement2;
                 @Movement2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement2;
                 @Movement2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement2;
@@ -299,9 +273,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Aiming.started += instance.OnAiming;
                 @Aiming.performed += instance.OnAiming;
                 @Aiming.canceled += instance.OnAiming;
-                @Reloading.started += instance.OnReloading;
-                @Reloading.performed += instance.OnReloading;
-                @Reloading.canceled += instance.OnReloading;
                 @Movement2.started += instance.OnMovement2;
                 @Movement2.performed += instance.OnMovement2;
                 @Movement2.canceled += instance.OnMovement2;
@@ -331,7 +302,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnAiming(InputAction.CallbackContext context);
-        void OnReloading(InputAction.CallbackContext context);
         void OnMovement2(InputAction.CallbackContext context);
     }
 }
