@@ -1,4 +1,4 @@
-using UnityEngine;   // TO-DO: Make Shooting with Action Type Button and add to stick if its possible. And make shooting button
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,12 +16,10 @@ public class PlayerController : MonoBehaviour
 
     private bool m_isMovePressed = false;
     private bool m_isAimingPressed = false;
-    private bool m_notReloading = true;
     private Vector2 m_movement;         //Movement Axis
     private Vector2 m_aiming;           //Aiming Axis
 
     private float m_nextFireTime = 0f;
-    private float m_endReloadTime = 0f;
     [SerializeField]
     private AudioSource m_audioSource;
 
@@ -56,21 +54,12 @@ public class PlayerController : MonoBehaviour
         m_isAimingPressed = false;
     }
 
-    private void ReloadingPerformedEvent()
-    {
-        if (m_notReloading){
-            Reloading();
-        }
-    }
-
     private void OnEnable()
     {
         m_playerValues.m_movementPerformedEvent += MovementPerformedEvent;
         m_playerValues.m_movementCanceledEvent += MovementCanceledEvent;
         m_playerValues.m_aimingPerformedEvent += AimingPerformedEvent;
         m_playerValues.m_aimingCanceledEvent += AimingCanceledEvent;
-        m_playerValues.m_reloadingPerformedEvent += ReloadingPerformedEvent;
-        // m_playerValues.m_reloadingCanceledEvent += ReloadingCanceledEvent;
     }
     private void OnDisable()
     {
@@ -78,8 +67,6 @@ public class PlayerController : MonoBehaviour
         m_playerValues.m_movementCanceledEvent -= MovementCanceledEvent;
         m_playerValues.m_aimingPerformedEvent -= AimingPerformedEvent;
         m_playerValues.m_aimingCanceledEvent -= AimingCanceledEvent;
-        m_playerValues.m_reloadingPerformedEvent -= ReloadingPerformedEvent;
-        // m_playerValues.m_reloadingCanceledEvent -= ReloadingCanceledEvent;
     }
 
     void FixedUpdate()
@@ -121,16 +108,5 @@ public class PlayerController : MonoBehaviour
         Rigidbody2D bulletRb = bullet.GetComponentInChildren<Rigidbody2D>();
         bulletRb.AddForce(m_bulletExit.up * m_weaponValues.BulletForce, ForceMode2D.Impulse);
         Destroy(bullet, m_weaponValues.BulletDestroyTime);
-    }
-
-    private void Reloading()
-    {
-        m_endReloadTime = Time.time + m_weaponValues.WeaponReloadTime;
-        Debug.Log("Play Reloading Sound at once and add bullets");
-        while (Time.time < m_endReloadTime)
-        {
-            Debug.Log(Time.time);
-        }
-        Debug.Log("Tipo Reloaded)");
     }
 }

@@ -13,9 +13,6 @@ public class WeaponSO : ScriptableObject
     private AudioClip m_bulletSoundShoot;
     [SerializeField]
     private float m_weaponFireRate;
-    [SerializeField]
-    private float m_weaponReloadTime;
-
 
     public GameObject BulletPrefab
     {
@@ -36,9 +33,5 @@ public class WeaponSO : ScriptableObject
     public float WeaponFireRate
     {
         get => m_weaponFireRate;
-    }
-    public float WeaponReloadTime
-    {
-        get => m_weaponReloadTime;
     }
 }
