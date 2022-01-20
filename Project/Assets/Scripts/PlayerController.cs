@@ -59,7 +59,6 @@ public class PlayerController : MonoBehaviour
     private void ReloadingPerformedEvent()
     {
         if (m_notReloading){
-            Debug.Log("Performed");
             Reloading();
         }
     }
@@ -126,14 +125,12 @@ public class PlayerController : MonoBehaviour
 
     private void Reloading()
     {
-        m_notReloading = false;
         m_endReloadTime = Time.time + m_weaponValues.WeaponReloadTime;
         Debug.Log("Play Reloading Sound at once and add bullets");
         while (Time.time < m_endReloadTime)
         {
-            break;
+            Debug.Log(Time.time);
         }
-        m_notReloading = true;
         Debug.Log("Tipo Reloaded)");
     }
 }
