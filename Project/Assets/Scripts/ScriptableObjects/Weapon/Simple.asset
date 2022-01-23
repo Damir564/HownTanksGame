@@ -19,7 +19,5 @@ MonoBehaviour:
   m_bulletSoundShoot: {fileID: 8300000, guid: 7f785c32f1a4bd34abd6e76e0484ef5c, type: 3}
   m_weaponFireRate: 0.5
   m_weaponReloadTime: 2
-  m_weaponAmmo: 96
+  m_weaponAllTotalAmmo: 96
   m_weaponTotalAmmo: 6
-  m_weaponCurrentAmmo: 6
-  m_weaponNotReloading: 1

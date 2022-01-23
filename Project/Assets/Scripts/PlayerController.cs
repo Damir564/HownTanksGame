@@ -1,10 +1,16 @@
 using UnityEngine;   // TO-DO: Make Shooting with Action Type Button and add to stick if its possible. And make shooting button
 using System.Collections;
+using TMPro;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private PlayerSO m_playerValues; // = default   ???
     private WeaponSO m_weaponValues;
+
+    [SerializeField]
+    private TextMeshProUGUI m_ammoCounter;
+    [SerializeField]
+    private GameObject m_weaponImageOuput;
 
     private Rigidbody2D m_rb;
     [SerializeField]
@@ -14,6 +20,9 @@ public class PlayerController : MonoBehaviour
 
     private bool m_isMovePressed = false;
     private bool m_isAimingPressed = false;
+    private bool m_isNotReloading = true;
+    private int m_currentAllAmmo;
+    private int m_currentAmmo;
     private Vector2 m_movement;         //Movement Axis
     private Vector2 m_aiming;           //Aiming Axis
 
@@ -54,9 +63,9 @@ public class PlayerController : MonoBehaviour
 
     private void ReloadingPerformedEvent()
     {
-        if (m_weaponValues.WeaponNotReloading && m_weaponValues.WeaponCurrentAmmo != m_weaponValues.WeaponTotalAmmo){
+        if (m_isNotReloading && m_currentAmmo != m_weaponValues.WeaponTotalAmmo && m_currentAllAmmo > 0){
             StartCoroutine(Reloading());
-            m_weaponValues.WeaponNotReloading = false;
+            m_isNotReloading = false;
         }
     }
 
@@ -102,7 +111,7 @@ public class PlayerController : MonoBehaviour
     {
         Quaternion toHeadRotation = Quaternion.LookRotation(Vector3.forward, m_aiming);
         m_head.transform.rotation = Quaternion.RotateTowards(m_head.transform.rotation, toHeadRotation, Time.fixedDeltaTime * m_playerValues.RotationSpeedHead);
-        if (m_weaponValues.WeaponCurrentAmmo != 0 && m_aiming.sqrMagnitude >= m_playerValues.ShootZone)
+        if (m_currentAmmo != 0 && m_aiming.sqrMagnitude >= m_playerValues.ShootZone)
         {
             Shooting();
         }
@@ -118,8 +127,8 @@ public class PlayerController : MonoBehaviour
         Rigidbody2D bulletRb = bullet.GetComponentInChildren<Rigidbody2D>();
         bulletRb.AddForce(m_bulletExit.up * m_weaponValues.BulletForce, ForceMode2D.Impulse);
         Destroy(bullet, m_weaponValues.BulletDestroyTime);
-        m_weaponValues.WeaponCurrentAmmo -= 1;
-        Debug.Log("Shot, ammo: " + m_weaponValues.WeaponCurrentAmmo);
+        m_currentAmmo -= 1;
+        AmmoCounterUpdate();
     }
 
     // private void Reloading()
@@ -138,9 +147,18 @@ public class PlayerController : MonoBehaviour
     IEnumerator Reloading()
     {
         yield return new WaitForSeconds(m_weaponValues.WeaponReloadTime);
-        m_weaponValues.WeaponCurrentAmmo = m_weaponValues.WeaponTotalAmmo;
-        Debug.Log("Reloaded, ammo: " + m_weaponValues.WeaponCurrentAmmo);
-        m_weaponValues.WeaponNotReloading = true;
+        if (m_currentAllAmmo + m_currentAmmo > m_weaponValues.WeaponTotalAmmo)
+        {
+            m_currentAllAmmo -= m_weaponValues.WeaponTotalAmmo - m_currentAmmo;
+            m_currentAmmo = m_weaponValues.WeaponTotalAmmo;
+        }
+        else
+        {
+            m_currentAmmo = m_currentAllAmmo + m_currentAmmo;
+            m_currentAllAmmo = 0;
+        }
+        m_isNotReloading = true;
+        AmmoCounterUpdate();
     }
 
     private void weaponChange(int weaponid)
@@ -149,5 +167,14 @@ public class PlayerController : MonoBehaviour
         m_head = Instantiate(m_weaponValues.HeadPrefab, this.transform);
         m_bulletExit = m_head.transform.GetChild(0);
         m_audioSource = m_head.GetComponent<AudioSource>();
+        m_currentAllAmmo = m_weaponValues.WeaponAllTotalAmmo;
+        m_currentAmmo = m_weaponValues.WeaponTotalAmmo;
+        m_weaponImageOuput.GetComponent<UnityEngine.UI.Image>().color = new Color32(255, 0, 0, 50);  // then get sprite from weaponSO  .sprite not .color
+        AmmoCounterUpdate();
+    }
+
+    private void AmmoCounterUpdate()
+    {
+        m_ammoCounter.text = m_currentAmmo.ToString() + "/" + m_currentAllAmmo.ToString();
     }
 }

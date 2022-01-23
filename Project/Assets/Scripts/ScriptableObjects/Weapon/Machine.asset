@@ -19,7 +19,5 @@ MonoBehaviour:
   m_bulletSoundShoot: {fileID: 0}
   m_weaponFireRate: 0.25
   m_weaponReloadTime: 6
-  m_weaponAmmo: 560
+  m_weaponAllTotalAmmo: 560
   m_weaponTotalAmmo: 80
-  m_weaponCurrentAmmo: 80
-  m_weaponNotReloading: 1

@@ -21,14 +21,16 @@ public class WeaponSO : ScriptableObject
     [SerializeField]
     private float m_weaponReloadTime;
     [SerializeField]
-    private int m_weaponAmmo;
+    private int m_weaponAllTotalAmmo;
+    // [SerializeField]
+    // private int m_weaponAllCurrentAmmo;  del
     [SerializeField]
     private int m_weaponTotalAmmo;
-    [SerializeField]
-    private int m_weaponCurrentAmmo;
+    // [SerializeField]
+    // private int m_weaponCurrentAmmo; del
     //Conditions
-    [SerializeField]
-    private bool m_weaponNotReloading;
+    // [SerializeField]
+    // private bool m_weaponNotReloading; del
 
 
     public GameObject BulletPrefab
@@ -59,22 +61,27 @@ public class WeaponSO : ScriptableObject
     {
         get => m_weaponReloadTime;
     }
-    public int WeaponAmmo
+    public int WeaponAllTotalAmmo
     {
-        get => m_weaponAmmo;
+        get => m_weaponAllTotalAmmo;
     }
+    // public int WeaponAllCurrentAmmo
+    // {
+    //     get => m_weaponAllCurrentAmmo;
+    //     set => m_weaponAllCurrentAmmo = value; del
+    // }
     public int WeaponTotalAmmo
     {
         get => m_weaponTotalAmmo;
     }
-    public int WeaponCurrentAmmo
-    {
-        get => m_weaponCurrentAmmo;
-        set => m_weaponCurrentAmmo = value;
-    }
-    public bool WeaponNotReloading
-    {
-        get => m_weaponNotReloading;
-        set => m_weaponNotReloading = value;
-    }
+    // public int WeaponCurrentAmmo
+    // {
+    //     get => m_weaponCurrentAmmo;
+    //     set => m_weaponCurrentAmmo = value; del
+    // }
+    // public bool WeaponNotReloading
+    // {
+    //     get => m_weaponNotReloading;
+    //     set => m_weaponNotReloading = value; del
+    // }
 }
