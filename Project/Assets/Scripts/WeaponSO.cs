@@ -3,8 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObjects/WeaponSO", order = 2)]
 public class WeaponSO : ScriptableObject
 {
+    //Prefabs:
     [SerializeField]
     private GameObject m_bulletPrefab;
+    [SerializeField]
+    private GameObject m_headPrefab;
     //Bullet Properites:
     [SerializeField]
     private float m_bulletForce;
@@ -18,12 +21,23 @@ public class WeaponSO : ScriptableObject
     [SerializeField]
     private float m_weaponReloadTime;
     [SerializeField]
-    private int m_weaponMagazineBullets;
+    private int m_weaponAmmo;
+    [SerializeField]
+    private int m_weaponTotalAmmo;
+    [SerializeField]
+    private int m_weaponCurrentAmmo;
+    //Conditions
+    [SerializeField]
+    private bool m_weaponNotReloading;
 
 
     public GameObject BulletPrefab
     {
         get => m_bulletPrefab;
+    }
+    public GameObject HeadPrefab
+    {
+        get => m_headPrefab;
     }
     public float BulletForce
     {
@@ -45,8 +59,22 @@ public class WeaponSO : ScriptableObject
     {
         get => m_weaponReloadTime;
     }
-    public int WeaponMagazineBullets
+    public int WeaponAmmo
     {
-        get => m_weaponMagazineBullets;
+        get => m_weaponAmmo;
+    }
+    public int WeaponTotalAmmo
+    {
+        get => m_weaponTotalAmmo;
+    }
+    public int WeaponCurrentAmmo
+    {
+        get => m_weaponCurrentAmmo;
+        set => m_weaponCurrentAmmo = value;
+    }
+    public bool WeaponNotReloading
+    {
+        get => m_weaponNotReloading;
+        set => m_weaponNotReloading = value;
     }
 }

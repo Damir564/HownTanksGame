@@ -9,15 +9,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D m_rb;
     [SerializeField]
     private GameObject m_body;
-    [SerializeField]
     private GameObject m_head;
-    [SerializeField]
     private Transform m_bulletExit;
 
     private bool m_isMovePressed = false;
     private bool m_isAimingPressed = false;
-    private bool m_notReloading = true;
-    private int m_magazineBullets;
     private Vector2 m_movement;         //Movement Axis
     private Vector2 m_aiming;           //Aiming Axis
 
@@ -27,8 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        m_weaponValues = m_playerValues.WeaponSOs[PlayerSO.DEFAULT_WEAPON];
-        m_magazineBullets = m_weaponValues.WeaponMagazineBullets;
+        weaponChange(PlayerSO.DEFAULT_WEAPON);
         m_rb = GetComponent<Rigidbody2D>();
     }
 
@@ -59,9 +54,9 @@ public class PlayerController : MonoBehaviour
 
     private void ReloadingPerformedEvent()
     {
-        if (m_notReloading && m_magazineBullets != m_weaponValues.WeaponMagazineBullets){
+        if (m_weaponValues.WeaponNotReloading && m_weaponValues.WeaponCurrentAmmo != m_weaponValues.WeaponTotalAmmo){
             StartCoroutine(Reloading());
-            m_notReloading = false;
+            m_weaponValues.WeaponNotReloading = false;
         }
     }
 
@@ -107,7 +102,7 @@ public class PlayerController : MonoBehaviour
     {
         Quaternion toHeadRotation = Quaternion.LookRotation(Vector3.forward, m_aiming);
         m_head.transform.rotation = Quaternion.RotateTowards(m_head.transform.rotation, toHeadRotation, Time.fixedDeltaTime * m_playerValues.RotationSpeedHead);
-        if (m_magazineBullets != 0 && m_aiming.sqrMagnitude >= m_playerValues.ShootZone)
+        if (m_weaponValues.WeaponCurrentAmmo != 0 && m_aiming.sqrMagnitude >= m_playerValues.ShootZone)
         {
             Shooting();
         }
@@ -123,8 +118,8 @@ public class PlayerController : MonoBehaviour
         Rigidbody2D bulletRb = bullet.GetComponentInChildren<Rigidbody2D>();
         bulletRb.AddForce(m_bulletExit.up * m_weaponValues.BulletForce, ForceMode2D.Impulse);
         Destroy(bullet, m_weaponValues.BulletDestroyTime);
-        m_magazineBullets -= 1;
-        Debug.Log("Shot, ammo: " + m_magazineBullets);
+        m_weaponValues.WeaponCurrentAmmo -= 1;
+        Debug.Log("Shot, ammo: " + m_weaponValues.WeaponCurrentAmmo);
     }
 
     // private void Reloading()
@@ -143,8 +138,16 @@ public class PlayerController : MonoBehaviour
     IEnumerator Reloading()
     {
         yield return new WaitForSeconds(m_weaponValues.WeaponReloadTime);
-        m_magazineBullets = m_weaponValues.WeaponMagazineBullets;
-        Debug.Log("Reloaded, ammo: " + m_magazineBullets);
-        m_notReloading = true;
+        m_weaponValues.WeaponCurrentAmmo = m_weaponValues.WeaponTotalAmmo;
+        Debug.Log("Reloaded, ammo: " + m_weaponValues.WeaponCurrentAmmo);
+        m_weaponValues.WeaponNotReloading = true;
+    }
+
+    private void weaponChange(int weaponid)
+    {
+        m_weaponValues = m_playerValues.WeaponSOs[weaponid];
+        m_head = Instantiate(m_weaponValues.HeadPrefab, this.transform);
+        m_bulletExit = m_head.transform.GetChild(0);
+        m_audioSource = m_head.GetComponent<AudioSource>();
     }
 }
