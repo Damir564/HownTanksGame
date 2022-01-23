@@ -5,16 +5,20 @@ public class WeaponSO : ScriptableObject
 {
     [SerializeField]
     private GameObject m_bulletPrefab;
+    //Bullet Properites:
     [SerializeField]
     private float m_bulletForce;
     [SerializeField]
     private float m_bulletDestroyTime;
     [SerializeField]
     private AudioClip m_bulletSoundShoot;
+    //Weapon Properties:
     [SerializeField]
     private float m_weaponFireRate;
     [SerializeField]
     private float m_weaponReloadTime;
+    [SerializeField]
+    private int m_weaponMagazineBullets;
 
 
     public GameObject BulletPrefab
@@ -40,5 +44,9 @@ public class WeaponSO : ScriptableObject
     public float WeaponReloadTime
     {
         get => m_weaponReloadTime;
+    }
+    public int WeaponMagazineBullets
+    {
+        get => m_weaponMagazineBullets;
     }
 }
