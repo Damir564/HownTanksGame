@@ -924,6 +924,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817578450}
   m_CullTransparentMesh: 1
+--- !u!1 &855173701 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3369680283151768961, guid: d5215ac39b7e36940a7b1ea72e14e1ae, type: 3}
+  m_PrefabInstance: {fileID: 1500431631}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &919445474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,6 +2105,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3369680283567338768, guid: d5215ac39b7e36940a7b1ea72e14e1ae, type: 3}
+      propertyPath: m_Transitions.m_InheritPosition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369680283567338768, guid: d5215ac39b7e36940a7b1ea72e14e1ae, type: 3}
+      propertyPath: m_Transitions.m_OnCameraLive.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369680283567338768, guid: d5215ac39b7e36940a7b1ea72e14e1ae, type: 3}
+      propertyPath: m_Transitions.m_OnCameraLive.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369680283567338768, guid: d5215ac39b7e36940a7b1ea72e14e1ae, type: 3}
+      propertyPath: m_Transitions.m_OnCameraLive.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 855173701}
+    - target: {fileID: 3369680283567338768, guid: d5215ac39b7e36940a7b1ea72e14e1ae, type: 3}
+      propertyPath: m_Transitions.m_OnCameraLive.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4491775048229369697, guid: d5215ac39b7e36940a7b1ea72e14e1ae, type: 3}
       propertyPath: m_Name
       value: Player
