@@ -4,13 +4,21 @@ TO-DO:
 //    -anims in unity:
 //-add shooting effect
 //-add bullet explosion effect
--add weaopn gui. With name and ammo count. Add total ammo
--add Health
--add Health gui
++add weaopn gui. With name and ammo count. Add total ammo
++add Health
++add Health gui
 
 -create recoil system
--create one more weapon
++create one more weapon
 -create weapon pickup
 
 
 -menu
+
+-scope change 
+
+
+-add controller for shooting;
+
+---- We have an event PlayerDeath for example. It will be invoked when hp is < 0
+        Some script PlayerManager will be subscribed to this event and in PlayerManager some function will be invoked

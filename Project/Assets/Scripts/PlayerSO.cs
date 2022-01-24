@@ -122,4 +122,12 @@ public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
     {
         get => m_shootZone;
     }
+
+    // Player
+    [SerializeField]
+    private int m_totalHealth;
+    public int TotalHealth
+    {
+        get => m_totalHealth;
+    }
 }

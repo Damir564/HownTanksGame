@@ -1,6 +1,7 @@
 using UnityEngine;   // TO-DO: Make Shooting with Action Type Button and add to stick if its possible. And make shooting button
 using System.Collections;
 using TMPro;
+using Cinemachine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
@@ -10,13 +11,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI m_ammoCounter;
     [SerializeField]
+    private TextMeshProUGUI m_healthCounter;
+    [SerializeField]
     private GameObject m_weaponImageOuput;
 
+    [SerializeField]
     private Rigidbody2D m_rb;
     [SerializeField]
     private GameObject m_body;
     private GameObject m_head;
     private Transform m_bulletExit;
+    [SerializeField]
+    private CinemachineVirtualCamera m_virtualCamera;
+    private int m_currentHealth;
+
+
 
     private bool m_isMovePressed = false;
     private bool m_isAimingPressed = false;
@@ -33,7 +42,9 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         weaponChange(PlayerSO.DEFAULT_WEAPON);
-        m_rb = GetComponent<Rigidbody2D>();
+        m_currentHealth = m_playerValues.TotalHealth;
+        HealthCounterUpdate(0);
+        m_virtualCamera.Follow = m_head.transform.Find("camerafollow");
     }
 
 
@@ -63,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
     private void ReloadingPerformedEvent()
     {
-        if (m_isNotReloading && m_currentAmmo != m_weaponValues.WeaponTotalAmmo && m_currentAllAmmo > 0){
+        if (m_isNotReloading && m_currentAmmo != m_weaponValues.WeaponTotalAmmo && m_currentAllAmmo != 0){
             StartCoroutine(Reloading());
             m_isNotReloading = false;
         }
@@ -111,7 +122,7 @@ public class PlayerController : MonoBehaviour
     {
         Quaternion toHeadRotation = Quaternion.LookRotation(Vector3.forward, m_aiming);
         m_head.transform.rotation = Quaternion.RotateTowards(m_head.transform.rotation, toHeadRotation, Time.fixedDeltaTime * m_playerValues.RotationSpeedHead);
-        if (m_currentAmmo != 0 && m_aiming.sqrMagnitude >= m_playerValues.ShootZone)
+        if (m_isNotReloading && m_currentAmmo != 0 && m_aiming.sqrMagnitude >= m_playerValues.ShootZone)
         {
             Shooting();
         }
@@ -122,27 +133,14 @@ public class PlayerController : MonoBehaviour
         if (Time.time < m_nextFireTime)
             return;
         m_nextFireTime = Time.time + m_weaponValues.WeaponFireRate;
-        m_audioSource.PlayOneShot(m_weaponValues.BulletSoundShoot);
         GameObject bullet = Instantiate(m_weaponValues.BulletPrefab, m_bulletExit.position, m_bulletExit.rotation);
         Rigidbody2D bulletRb = bullet.GetComponentInChildren<Rigidbody2D>();
         bulletRb.AddForce(m_bulletExit.up * m_weaponValues.BulletForce, ForceMode2D.Impulse);
+        m_audioSource.PlayOneShot(m_weaponValues.BulletSoundShoot);
         Destroy(bullet, m_weaponValues.BulletDestroyTime);
         m_currentAmmo -= 1;
         AmmoCounterUpdate();
     }
-
-    // private void Reloading()
-    // {
-    //     m_notReloading = false;
-    //     m_endReloadTime = Time.time + m_weaponValues.WeaponReloadTime;
-    //     Debug.Log("Play Reloading Sound at once and add bullets");
-    //     while (Time.time < m_endReloadTime)
-    //     {
-    //         break;
-    //     }
-    //     m_notReloading = true;
-    //     Debug.Log("Tipo Reloaded)");
-    // }
 
     IEnumerator Reloading()
     {
@@ -176,5 +174,29 @@ public class PlayerController : MonoBehaviour
     private void AmmoCounterUpdate()
     {
         m_ammoCounter.text = m_currentAmmo.ToString() + "/" + m_currentAllAmmo.ToString();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // if will be needed: audioclip by bullet tag
+        if (collision.gameObject.tag == "Projectile")
+        {
+            Vector3 soundPos = collision.transform.position;
+            collision.gameObject.SetActive(false);
+            Transform bulletParent = collision.transform.parent;
+            collision.transform.parent.GetChild(1).gameObject.SetActive(true);
+            Destroy(bulletParent.gameObject, 0.2f);
+            HealthCounterUpdate(20);
+        }
+    }
+
+    private void HealthCounterUpdate(int damage)
+    {
+        m_currentHealth -= damage;
+        m_healthCounter.text = m_currentHealth.ToString();
+        if (m_currentHealth <= 0)
+        {
+            Debug.Log("Tank Exploded");
+        }
     }
 }

@@ -22,3 +22,4 @@ MonoBehaviour:
   m_rotationSpeedBody: 1200
   m_rotationSpeedHead: 1200
   m_shootZone: 0.86
+  m_totalHealth: 100

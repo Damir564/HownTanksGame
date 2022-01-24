@@ -618,8 +618,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerValues: {fileID: 11400000, guid: 2106cbf4d3b013f4197c204f345abe34, type: 2}
   m_ammoCounter: {fileID: 0}
+  m_healthCounter: {fileID: 0}
   m_weaponImageOuput: {fileID: 0}
+  m_rb: {fileID: 4491775048229369702}
   m_body: {fileID: 1599706691993816811}
+  m_virtualCamera: {fileID: 3369680283567338768}
   m_audioSource: {fileID: 0}
 --- !u!212 &7135623614751215071
 SpriteRenderer:
