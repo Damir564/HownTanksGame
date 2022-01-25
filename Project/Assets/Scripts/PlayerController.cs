@@ -2,53 +2,51 @@ using UnityEngine;   // TO-DO: Make Shooting with Action Type Button and add to 
 using System.Collections;
 using TMPro;
 using Cinemachine;
+
+
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerSO m_playerValues; // = default   ???
-    private WeaponSO m_weaponValues;
+    // Game
+    [SerializeField] private Transform allBulletsParent;
 
-    [SerializeField]
-    private TextMeshProUGUI m_ammoCounter;
-    [SerializeField]
-    private TextMeshProUGUI m_healthCounter;
-    [SerializeField]
-    private GameObject m_weaponImageOuput;
-
-    [SerializeField]
-    private Rigidbody2D m_rb;
-    [SerializeField]
-    private GameObject m_body;
+    // Input
+    [SerializeField] private PlayerSO m_playerValues;
+    [SerializeField] private Rigidbody2D m_rb;
+    [SerializeField] private GameObject m_body;
     private GameObject m_head;
-    private Transform m_bulletExit;
-    [SerializeField]
-    private CinemachineVirtualCamera m_virtualCamera;
-    private int m_currentHealth;
-
-
-
+    private Vector2 m_movement;
+    private Vector2 m_aiming;
     private bool m_isMovePressed = false;
     private bool m_isAimingPressed = false;
+
+    // UI & Cameras
+    [SerializeField] private TMP_Text m_ammoCounter;
+    [SerializeField] private TMP_Text m_healthCounter;
+    [SerializeField] private GameObject m_weaponImageOuput;
+    [SerializeField] private CinemachineVirtualCamera m_virtualCamera;
+    private Transform m_bulletExit;
+    private AudioSource m_audioSource;
+
+    // Shooting
+    private WeaponSO m_weaponValues;
     private bool m_isNotReloading = true;
+    private int m_currentWeaponIndex;
     private int m_currentAllAmmo;
     private int m_currentAmmo;
-    private Vector2 m_movement;         //Movement Axis
-    private Vector2 m_aiming;           //Aiming Axis
-
     private float m_nextFireTime = 0f;
-    [SerializeField]
-    private AudioSource m_audioSource;
+
+    // Health & Damage
+    private BulletSO m_enemyBulletValues;
+    private int m_currentHealth;
+    private string m_enemyName;
 
     private void Awake()
     {
-        weaponChange(PlayerSO.DEFAULT_WEAPON);
-        m_currentHealth = m_playerValues.TotalHealth;
-        HealthCounterUpdate(0);
+        m_currentWeaponIndex = PlayerSO.DEFAULT_WEAPON;
+        weaponChange(m_currentWeaponIndex);
+        ChangeHealth(m_playerValues.TotalHealth);
         m_virtualCamera.Follow = m_head.transform.Find("camerafollow");
     }
-
-
-
 
     private void MovementPerformedEvent(Vector2 value)
     {
@@ -74,7 +72,8 @@ public class PlayerController : MonoBehaviour
 
     private void ReloadingPerformedEvent()
     {
-        if (m_isNotReloading && m_currentAmmo != m_weaponValues.WeaponTotalAmmo && m_currentAllAmmo != 0){
+        if (m_isNotReloading && m_currentAmmo != m_weaponValues.WeaponTotalAmmo && m_currentAllAmmo != 0)
+        {
             StartCoroutine(Reloading());
             m_isNotReloading = false;
         }
@@ -82,20 +81,22 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        m_playerValues.m_movementPerformedEvent += MovementPerformedEvent;
-        m_playerValues.m_movementCanceledEvent += MovementCanceledEvent;
-        m_playerValues.m_aimingPerformedEvent += AimingPerformedEvent;
-        m_playerValues.m_aimingCanceledEvent += AimingCanceledEvent;
-        m_playerValues.m_reloadingPerformedEvent += ReloadingPerformedEvent;
+        // Input
+        m_playerValues.m_MovementPerformedEvent += MovementPerformedEvent;
+        m_playerValues.m_MovementCanceledEvent += MovementCanceledEvent;
+        m_playerValues.m_AimingPerformedEvent += AimingPerformedEvent;
+        m_playerValues.m_AimingCanceledEvent += AimingCanceledEvent;
+        m_playerValues.m_ReloadingPerformedEvent += ReloadingPerformedEvent;
         // m_playerValues.m_reloadingCanceledEvent += ReloadingCanceledEvent;
     }
     private void OnDisable()
     {
-        m_playerValues.m_movementPerformedEvent -= MovementPerformedEvent;
-        m_playerValues.m_movementCanceledEvent -= MovementCanceledEvent;
-        m_playerValues.m_aimingPerformedEvent -= AimingPerformedEvent;
-        m_playerValues.m_aimingCanceledEvent -= AimingCanceledEvent;
-        m_playerValues.m_reloadingPerformedEvent -= ReloadingPerformedEvent;
+        // Input
+        m_playerValues.m_MovementPerformedEvent -= MovementPerformedEvent;
+        m_playerValues.m_MovementCanceledEvent -= MovementCanceledEvent;
+        m_playerValues.m_AimingPerformedEvent -= AimingPerformedEvent;
+        m_playerValues.m_AimingCanceledEvent -= AimingCanceledEvent;
+        m_playerValues.m_ReloadingPerformedEvent -= ReloadingPerformedEvent;
         // m_playerValues.m_reloadingCanceledEvent -= ReloadingCanceledEvent;
     }
 
@@ -122,7 +123,7 @@ public class PlayerController : MonoBehaviour
     {
         Quaternion toHeadRotation = Quaternion.LookRotation(Vector3.forward, m_aiming);
         m_head.transform.rotation = Quaternion.RotateTowards(m_head.transform.rotation, toHeadRotation, Time.fixedDeltaTime * m_playerValues.RotationSpeedHead);
-        if (m_isNotReloading && m_currentAmmo != 0 && m_aiming.sqrMagnitude >= m_playerValues.ShootZone)
+        if (m_aiming.sqrMagnitude >= m_playerValues.ShootZone)
         {
             Shooting();
         }
@@ -130,14 +131,15 @@ public class PlayerController : MonoBehaviour
 
     private void Shooting()
     {
-        if (Time.time < m_nextFireTime)
+        if (!m_isNotReloading || m_currentAmmo == 0 || Time.time < m_nextFireTime)
             return;
         m_nextFireTime = Time.time + m_weaponValues.WeaponFireRate;
-        GameObject bullet = Instantiate(m_weaponValues.BulletPrefab, m_bulletExit.position, m_bulletExit.rotation);
-        Rigidbody2D bulletRb = bullet.GetComponentInChildren<Rigidbody2D>();
+        GameObject bullet = Instantiate(m_weaponValues.BulletPrefab, m_bulletExit.position, m_bulletExit.rotation, allBulletsParent);
+        bullet.name = "Player";
+        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
         bulletRb.AddForce(m_bulletExit.up * m_weaponValues.BulletForce, ForceMode2D.Impulse);
-        m_audioSource.PlayOneShot(m_weaponValues.BulletSoundShoot);
-        Destroy(bullet, m_weaponValues.BulletDestroyTime);
+        m_audioSource.PlayOneShot(m_weaponValues.WeaponSoundShoot);
+        // Destroy(bullet, m_weaponValues.BulletDestroyTime);
         m_currentAmmo -= 1;
         AmmoCounterUpdate();
     }
@@ -162,12 +164,12 @@ public class PlayerController : MonoBehaviour
     private void weaponChange(int weaponid)
     {
         m_weaponValues = m_playerValues.WeaponSOs[weaponid];
-        m_head = Instantiate(m_weaponValues.HeadPrefab, this.transform);
+        m_head = Instantiate(m_weaponValues.HeadPrefab, transform);
         m_bulletExit = m_head.transform.GetChild(0);
         m_audioSource = m_head.GetComponent<AudioSource>();
         m_currentAllAmmo = m_weaponValues.WeaponAllTotalAmmo;
         m_currentAmmo = m_weaponValues.WeaponTotalAmmo;
-        m_weaponImageOuput.GetComponent<UnityEngine.UI.Image>().color = new Color32(255, 0, 0, 50);  // then get sprite from weaponSO  .sprite not .color
+        m_weaponImageOuput.GetComponent<UnityEngine.UI.Image>().color = new Color32(255, 0, 0, 50);
         AmmoCounterUpdate();
     }
 
@@ -178,25 +180,27 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // if will be needed: audioclip by bullet tag
         if (collision.gameObject.tag == "Projectile")
         {
-            Vector3 soundPos = collision.transform.position;
-            collision.gameObject.SetActive(false);
-            Transform bulletParent = collision.transform.parent;
-            collision.transform.parent.GetChild(1).gameObject.SetActive(true);
-            Destroy(bulletParent.gameObject, 0.2f);
-            HealthCounterUpdate(20);
+            m_enemyName = collision.gameObject.name;
+            m_enemyBulletValues = collision.gameObject.GetComponent<BulletsHit>().BulletValues;
+            ChangeHealth(-m_enemyBulletValues.BulletDamage);
         }
     }
 
-    private void HealthCounterUpdate(int damage)
+
+    private void ChangeHealth(int amount)
     {
-        m_currentHealth -= damage;
-        m_healthCounter.text = m_currentHealth.ToString();
+        m_currentHealth += amount;
         if (m_currentHealth <= 0)
         {
             Debug.Log("Tank Exploded");
         }
+        HealthCounterUpdate();
+    }
+
+    private void HealthCounterUpdate()
+    {
+        m_healthCounter.text = m_currentHealth.ToString();
     }
 }

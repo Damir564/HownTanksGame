@@ -6,14 +6,14 @@ using UnityEngine.Events;
 public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
 {
     // Input
-    public event UnityAction<Vector2> m_movementPerformedEvent;
-    public event UnityAction m_movementCanceledEvent;
-    public event UnityAction<Vector2> m_aimingPerformedEvent;
-    public event UnityAction m_aimingCanceledEvent;
-    public event UnityAction m_reloadingPerformedEvent;
-    // public event UnityAction m_reloadingCanceledEvent;
+    public event UnityAction<Vector2> m_MovementPerformedEvent;
+    public event UnityAction m_MovementCanceledEvent;
+    public event UnityAction<Vector2> m_AimingPerformedEvent;
+    public event UnityAction m_AimingCanceledEvent;
+    public event UnityAction m_ReloadingPerformedEvent;
 
     private GameInput m_gameInput;
+
 
     private void OnEnable()
     {
@@ -42,10 +42,10 @@ public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
 
     public void OnMovement(InputAction.CallbackContext ctx)
     {
-        if (m_movementPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
-            m_movementPerformedEvent.Invoke(ctx.ReadValue<Vector2>());
-        if (m_movementCanceledEvent != null && ctx.phase == InputActionPhase.Canceled)
-            m_movementCanceledEvent.Invoke();
+        if (m_MovementPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
+            m_MovementPerformedEvent.Invoke(ctx.ReadValue<Vector2>());
+        if (m_MovementCanceledEvent != null && ctx.phase == InputActionPhase.Canceled)
+            m_MovementCanceledEvent.Invoke();
     }
 
     ///***
@@ -53,28 +53,25 @@ public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
     ///***
     public void OnMovement2(InputAction.CallbackContext ctx)
     {
-        if (m_movementPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
-            m_movementPerformedEvent.Invoke(ctx.ReadValue<Vector2>());
-        if (m_movementCanceledEvent != null && ctx.phase == InputActionPhase.Canceled)
-            m_movementCanceledEvent.Invoke();
+        if (m_MovementPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
+            m_MovementPerformedEvent.Invoke(ctx.ReadValue<Vector2>());
+        if (m_MovementCanceledEvent != null && ctx.phase == InputActionPhase.Canceled)
+            m_MovementCanceledEvent.Invoke();
     }
 
     public void OnAiming(InputAction.CallbackContext ctx)
     {
-        if (m_aimingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
-            m_aimingPerformedEvent.Invoke(ctx.ReadValue<Vector2>());
-        if (m_aimingCanceledEvent != null && ctx.phase == InputActionPhase.Canceled)
-            m_aimingCanceledEvent.Invoke();
+        if (m_AimingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
+            m_AimingPerformedEvent.Invoke(ctx.ReadValue<Vector2>());
+        if (m_AimingCanceledEvent != null && ctx.phase == InputActionPhase.Canceled)
+            m_AimingCanceledEvent.Invoke();
     }
 
     public void OnReloading(InputAction.CallbackContext ctx)
     {
-        if (m_reloadingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
-            m_reloadingPerformedEvent.Invoke();
-        // if (m_reloadingCanceledEvent != null && ctx.phase == InputActionPhase.Canceled)
-        //     m_reloadingCanceledEvent.Invoke();
+        if (m_ReloadingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
+            m_ReloadingPerformedEvent.Invoke();
     }
-
     // Weapon
     public enum Weapons
     {
@@ -97,14 +94,10 @@ public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
     }
 
     // Body
-    [SerializeField]
-    private float m_movementSpeed;
-    [SerializeField]
-    private float m_rotationSpeedBody;
-    [SerializeField]
-    private float m_rotationSpeedHead;
-    [SerializeField]
-    private float m_shootZone;
+    [SerializeField] private float m_movementSpeed;
+    [SerializeField] private float m_rotationSpeedBody;
+    [SerializeField] private float m_rotationSpeedHead;
+    [SerializeField] private float m_shootZone;
 
     public float MovementSpeed
     {
@@ -124,8 +117,7 @@ public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
     }
 
     // Player
-    [SerializeField]
-    private int m_totalHealth;
+    [SerializeField] private int m_totalHealth;
     public int TotalHealth
     {
         get => m_totalHealth;

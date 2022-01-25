@@ -1,7 +1,7 @@
 23.07.2022 :)
 TO-DO:
 //-add sprites for buttons
-//    -anims in unity:
+// -anims in unity:
 //-add shooting effect
 //-add bullet explosion effect
 +add weaopn gui. With name and ammo count. Add total ammo
@@ -12,13 +12,17 @@ TO-DO:
 +create one more weapon
 -create weapon pickup
 
-
 -menu
 
--scope change 
-
+-scope change
 
 -add controller for shooting;
 
 ---- We have an event PlayerDeath for example. It will be invoked when hp is < 0
-        Some script PlayerManager will be subscribed to this event and in PlayerManager some function will be invoked
+Some script PlayerManager will be subscribed to this event and in PlayerManager some function will be invoked
+
+https://blog.unity.com/technology/1k-update-calls Useful blog
+https://blog.theknightsofunity.com/monobehavior-calls-optimization/ there is an improved updater manager class.
+
+Create tilemaps to make map
+Create spite for: simpleUI, machineGun & UI, shotgun & UI, sniper & UI
