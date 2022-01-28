@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TMP_Text m_healthCounter;
     [SerializeField] private GameObject m_weaponImageOuput;
     [SerializeField] private CinemachineVirtualCamera m_virtualCamera;
+    // [SerializeField] private Camera m_mainCamera;
     private Transform m_bulletExit;
     private AudioSource m_audioSource;
 
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
         weaponChange(m_currentWeaponIndex);
         ChangeHealth(m_playerValues.TotalHealth);
         m_virtualCamera.Follow = m_head.transform.Find("camerafollow");
+        // m_mainCamera.GetComponent<PixelPerfectcamera>();
     }
 
     private void MovementPerformedEvent(Vector2 value)
