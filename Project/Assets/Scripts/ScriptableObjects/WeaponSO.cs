@@ -13,6 +13,7 @@ public class WeaponSO : ScriptableObject
     [SerializeField] private float m_weaponReloadTime;
     [SerializeField] private int m_weaponAllTotalAmmo;
     [SerializeField] private int m_weaponTotalAmmo;
+    [SerializeField] private int[] m_weaponScope = new int[2];
 
 
     public GameObject BulletPrefab
@@ -46,5 +47,9 @@ public class WeaponSO : ScriptableObject
     public int WeaponTotalAmmo
     {
         get => m_weaponTotalAmmo;
+    }
+    public int[] WeaponScope
+    {
+        get => m_weaponScope;
     }
 }

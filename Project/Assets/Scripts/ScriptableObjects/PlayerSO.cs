@@ -11,6 +11,7 @@ public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
     public event UnityAction<Vector2> m_AimingPerformedEvent;
     public event UnityAction m_AimingCanceledEvent;
     public event UnityAction m_ReloadingPerformedEvent;
+    public event UnityAction m_ScopingPerformedEvent;
 
     private GameInput m_gameInput;
 
@@ -71,6 +72,12 @@ public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
     {
         if (m_ReloadingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
             m_ReloadingPerformedEvent.Invoke();
+    }
+
+    public void OnScoping(InputAction.CallbackContext ctx)
+    {
+        if (m_ScopingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
+            m_ScopingPerformedEvent.Invoke();
     }
     // Weapon
     public enum Weapons

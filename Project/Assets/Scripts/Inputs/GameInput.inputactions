@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Scoping",
+                    "type": "Button",
+                    "id": "437932f7-3bf0-49c0-b68d-6e437b8de6b1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Movement2",
                     "type": "Value",
                     "id": "c6b04cf2-e7d3-4708-af85-7692e5440ed1",
@@ -128,6 +137,17 @@
                     "processors": "",
                     "groups": "BuildScheme",
                     "action": "Reloading",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a633fa63-eb66-4def-85b1-f85b7bff3f6a",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "BuildScheme",
+                    "action": "Scoping",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

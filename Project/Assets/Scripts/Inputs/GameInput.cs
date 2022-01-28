@@ -55,6 +55,15 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Scoping"",
+                    ""type"": ""Button"",
+                    ""id"": ""437932f7-3bf0-49c0-b68d-6e437b8de6b1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Movement2"",
                     ""type"": ""Value"",
                     ""id"": ""c6b04cf2-e7d3-4708-af85-7692e5440ed1"",
@@ -152,6 +161,17 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""action"": ""Reloading"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a633fa63-eb66-4def-85b1-f85b7bff3f6a"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""BuildScheme"",
+                    ""action"": ""Scoping"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -196,6 +216,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Aiming = m_Player.FindAction("Aiming", throwIfNotFound: true);
         m_Player_Reloading = m_Player.FindAction("Reloading", throwIfNotFound: true);
+        m_Player_Scoping = m_Player.FindAction("Scoping", throwIfNotFound: true);
         m_Player_Movement2 = m_Player.FindAction("Movement2", throwIfNotFound: true);
     }
 
@@ -259,6 +280,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Aiming;
     private readonly InputAction m_Player_Reloading;
+    private readonly InputAction m_Player_Scoping;
     private readonly InputAction m_Player_Movement2;
     public struct PlayerActions
     {
@@ -267,6 +289,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Aiming => m_Wrapper.m_Player_Aiming;
         public InputAction @Reloading => m_Wrapper.m_Player_Reloading;
+        public InputAction @Scoping => m_Wrapper.m_Player_Scoping;
         public InputAction @Movement2 => m_Wrapper.m_Player_Movement2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -286,6 +309,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Reloading.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloading;
                 @Reloading.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloading;
                 @Reloading.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloading;
+                @Scoping.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScoping;
+                @Scoping.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScoping;
+                @Scoping.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScoping;
                 @Movement2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement2;
                 @Movement2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement2;
                 @Movement2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement2;
@@ -302,6 +328,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Reloading.started += instance.OnReloading;
                 @Reloading.performed += instance.OnReloading;
                 @Reloading.canceled += instance.OnReloading;
+                @Scoping.started += instance.OnScoping;
+                @Scoping.performed += instance.OnScoping;
+                @Scoping.canceled += instance.OnScoping;
                 @Movement2.started += instance.OnMovement2;
                 @Movement2.performed += instance.OnMovement2;
                 @Movement2.canceled += instance.OnMovement2;
@@ -332,6 +361,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnAiming(InputAction.CallbackContext context);
         void OnReloading(InputAction.CallbackContext context);
+        void OnScoping(InputAction.CallbackContext context);
         void OnMovement2(InputAction.CallbackContext context);
     }
 }

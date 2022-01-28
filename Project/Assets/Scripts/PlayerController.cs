@@ -24,13 +24,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TMP_Text m_healthCounter;
     [SerializeField] private GameObject m_weaponImageOuput;
     [SerializeField] private CinemachineVirtualCamera m_virtualCamera;
-    // [SerializeField] private Camera m_mainCamera;
+    private UnityEngine.U2D.PixelPerfectCamera m_pixelPerfect;
     private Transform m_bulletExit;
     private AudioSource m_audioSource;
 
     // Shooting
     private WeaponSO m_weaponValues;
     private bool m_isNotReloading = true;
+    private int m_scopingState = 0;
     private int m_currentWeaponIndex;
     private int m_currentAllAmmo;
     private int m_currentAmmo;
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
         weaponChange(m_currentWeaponIndex);
         ChangeHealth(m_playerValues.TotalHealth);
         m_virtualCamera.Follow = m_head.transform.Find("camerafollow");
-        // m_mainCamera.GetComponent<PixelPerfectcamera>();
+        m_pixelPerfect = this.transform.Find("Main Camera").GetComponent<UnityEngine.U2D.PixelPerfectCamera>();
     }
 
     private void MovementPerformedEvent(Vector2 value)
@@ -79,6 +80,17 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Reloading());
             m_isNotReloading = false;
         }
+    }
+
+    private void ScopingPerformedEvent()
+    {
+        if (m_scopingState < m_weaponValues.WeaponScope.Length - 1){
+            m_scopingState += 1;
+        }
+        else{
+            m_scopingState = 0;
+        }
+        m_pixelPerfect.assetsPPU = m_weaponValues.WeaponScope[m_scopingState];
     }
 
     private void OnEnable()
@@ -172,6 +184,7 @@ public class PlayerController : MonoBehaviour
         m_currentAllAmmo = m_weaponValues.WeaponAllTotalAmmo;
         m_currentAmmo = m_weaponValues.WeaponTotalAmmo;
         m_weaponImageOuput.GetComponent<UnityEngine.UI.Image>().color = new Color32(255, 0, 0, 50);
+        m_pixelPerfect.assetsPPU = m_weaponValues.WeaponScope[0];
         AmmoCounterUpdate();
     }
 
