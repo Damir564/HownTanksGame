@@ -21,17 +21,22 @@ https://blog.theknightsofunity.com/monobehavior-calls-optimization/ there is an 
 +Create tilemaps to make map
 
 -Create spite for: simpleUI, machineGun & UI, shotgun & UI, sniper & UI
+-health box sprite
+-weapon box sprite
+-fence on the edges sprite
+-mine sprite
 -change tree sprite's color to white. So we can change color from unity and dont have to load additional sprites.
--all object's colliders should be boxes
 -create road with TileMap
+-all object's colliders should be boxes
 -hierarchy has to be changed. So HitableObjects are in the GreenCountry.
 -all hitableObjects must have HitableObjects tag
 -minefield should be added on the bottom of a map
--mine sprites has to be added
 -fences have to be added on the edges of map and around the forest
+-add bullet sprite to our bullet prefab
+
 -fix camera jittering
 -move our targetCamera futher if camera is scoped.
--add bullet sprite to our bullet prefab
 -weapon pickup has to be added
 -health boxes has to be added
--random spawn has to be added
+-random spawn of items has to be added
+-multiplayer what api to use?
