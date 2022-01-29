@@ -8,6 +8,7 @@ public class WeaponSO : ScriptableObject
     [SerializeField] private GameObject m_headPrefab;
     [Header("Weapon properties")]
     [SerializeField] private float m_bulletForce;
+    [SerializeField] private float m_bulletDestroyTime;
     [SerializeField] private AudioClip m_weaponSoundShoot;
     [SerializeField] private float m_weaponFireRate;
     [SerializeField] private float m_weaponReloadTime;
@@ -27,6 +28,10 @@ public class WeaponSO : ScriptableObject
     public float BulletForce
     {
         get => m_bulletForce;
+    }
+    public float BulletDestroyTime
+    {
+        get => m_bulletDestroyTime;
     }
     public AudioClip WeaponSoundShoot
     {

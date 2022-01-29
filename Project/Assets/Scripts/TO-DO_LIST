@@ -33,6 +33,9 @@ https://blog.theknightsofunity.com/monobehavior-calls-optimization/ there is an 
 -minefield should be added on the bottom of a map
 -fences have to be added on the edges of map and around the forest
 -add bullet sprite to our bullet prefab
+-when the rotation of tank is on diagonals and shootinh, tank get damage - need to fix it #added
+-road crossing sprite #added
+-bomb pit for asphalts crossing #added
 
 -fix camera jittering
 -move our targetCamera futher if camera is scoped.

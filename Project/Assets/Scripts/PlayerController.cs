@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
         bulletRb.AddForce(m_bulletExit.up * m_weaponValues.BulletForce, ForceMode2D.Impulse);
         m_audioSource.PlayOneShot(m_weaponValues.WeaponSoundShoot);
-        // Destroy(bullet, m_weaponValues.BulletDestroyTime);
+        Destroy(bullet, m_weaponValues.BulletDestroyTime);
         m_currentAmmo -= 1;
         AmmoCounterUpdate();
     }
