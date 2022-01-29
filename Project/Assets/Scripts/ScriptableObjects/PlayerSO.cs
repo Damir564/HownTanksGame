@@ -71,12 +71,14 @@ public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
     public void OnReloading(InputAction.CallbackContext ctx)
     {
         if (m_ReloadingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
+            Debug.Log("Reloading");
             m_ReloadingPerformedEvent.Invoke();
     }
 
     public void OnScoping(InputAction.CallbackContext ctx)
     {
         if (m_ScopingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
+            Debug.Log("Scoping");
             m_ScopingPerformedEvent.Invoke();
     }
     // Weapon

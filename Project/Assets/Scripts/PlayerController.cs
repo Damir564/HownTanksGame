@@ -45,10 +45,10 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         m_currentWeaponIndex = PlayerSO.DEFAULT_WEAPON;
+        m_pixelPerfect = this.transform.Find("Main Camera").GetComponent<UnityEngine.U2D.PixelPerfectCamera>();
         weaponChange(m_currentWeaponIndex);
         ChangeHealth(m_playerValues.TotalHealth);
         m_virtualCamera.Follow = m_head.transform.Find("camerafollow");
-        m_pixelPerfect = this.transform.Find("Main Camera").GetComponent<UnityEngine.U2D.PixelPerfectCamera>();
     }
 
     private void MovementPerformedEvent(Vector2 value)
@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour
         else{
             m_scopingState = 0;
         }
+        Debug.Log(m_scopingState + "!!");
         m_pixelPerfect.assetsPPU = m_weaponValues.WeaponScope[m_scopingState];
     }
 
@@ -101,6 +102,7 @@ public class PlayerController : MonoBehaviour
         m_playerValues.m_AimingPerformedEvent += AimingPerformedEvent;
         m_playerValues.m_AimingCanceledEvent += AimingCanceledEvent;
         m_playerValues.m_ReloadingPerformedEvent += ReloadingPerformedEvent;
+        m_playerValues.m_ReloadingPerformedEvent += ScopingPerformedEvent;
         // m_playerValues.m_reloadingCanceledEvent += ReloadingCanceledEvent;
     }
     private void OnDisable()
@@ -111,6 +113,7 @@ public class PlayerController : MonoBehaviour
         m_playerValues.m_AimingPerformedEvent -= AimingPerformedEvent;
         m_playerValues.m_AimingCanceledEvent -= AimingCanceledEvent;
         m_playerValues.m_ReloadingPerformedEvent -= ReloadingPerformedEvent;
+        m_playerValues.m_ReloadingPerformedEvent -= ScopingPerformedEvent;
         // m_playerValues.m_reloadingCanceledEvent -= ReloadingCanceledEvent;
     }
 
