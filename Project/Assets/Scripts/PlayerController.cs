@@ -84,10 +84,12 @@ public class PlayerController : MonoBehaviour
 
     private void ScopingPerformedEvent()
     {
-        if (m_scopingState < m_weaponValues.WeaponScope.Length - 1){
+        if (m_scopingState < m_weaponValues.WeaponScope.Length - 1)
+        {
             m_scopingState += 1;
         }
-        else{
+        else
+        {
             m_scopingState = 0;
         }
         Debug.Log(m_scopingState + "!!");
@@ -102,7 +104,7 @@ public class PlayerController : MonoBehaviour
         m_playerValues.m_AimingPerformedEvent += AimingPerformedEvent;
         m_playerValues.m_AimingCanceledEvent += AimingCanceledEvent;
         m_playerValues.m_ReloadingPerformedEvent += ReloadingPerformedEvent;
-        m_playerValues.m_ReloadingPerformedEvent += ScopingPerformedEvent;
+        m_playerValues.m_ScopingPerformedEvent += ScopingPerformedEvent;
         // m_playerValues.m_reloadingCanceledEvent += ReloadingCanceledEvent;
     }
     private void OnDisable()
@@ -113,7 +115,7 @@ public class PlayerController : MonoBehaviour
         m_playerValues.m_AimingPerformedEvent -= AimingPerformedEvent;
         m_playerValues.m_AimingCanceledEvent -= AimingCanceledEvent;
         m_playerValues.m_ReloadingPerformedEvent -= ReloadingPerformedEvent;
-        m_playerValues.m_ReloadingPerformedEvent -= ScopingPerformedEvent;
+        m_playerValues.m_ScopingPerformedEvent -= ScopingPerformedEvent;
         // m_playerValues.m_reloadingCanceledEvent -= ReloadingCanceledEvent;
     }
 
