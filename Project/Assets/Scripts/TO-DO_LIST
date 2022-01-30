@@ -21,7 +21,8 @@ https://blog.theknightsofunity.com/monobehavior-calls-optimization/ there is an 
 +Create tilemaps to make map
 
 -Create spite for: simpleUI, machineGun & UI, shotgun & UI, sniper & UI
--health box sprite
++health box sprite
++ammo box crate
 -weapon box sprite
 -fence on the edges sprite
 -mine sprite
