@@ -26,17 +26,17 @@ https://blog.theknightsofunity.com/monobehavior-calls-optimization/ there is an 
 -weapon box sprite
 -fence on the edges sprite
 -mine sprite
--change tree sprite's color to white. So we can change color from unity and dont have to load additional sprites.
++change tree sprite's color to white. So we can change color from unity and dont have to load additional sprites.
 -+create road with TileMap
 -all object's colliders should be boxes
--hierarchy has to be changed. So HitableObjects are in the GreenCountry.
++hierarchy has to be changed. So HitableObjects are in the GreenCountry.
 -all hitableObjects must have HitableObjects tag
 -minefield should be added on the bottom of a map
--fences have to be added on the edges of map and around the forest
++fences have to be added on the edges of map and around the forest
 -add bullet sprite to our bullet prefab
 +(bulletexitwasmoved)-when the rotation of tank is on diagonals and shootinh, tank get damage - need to fix it
 -road crossing sprite or bomb pit sprite
--forest sprite
++forest sprite
 
 - -fix camera jittering
   -move our targetCamera futher if camera is scoped.

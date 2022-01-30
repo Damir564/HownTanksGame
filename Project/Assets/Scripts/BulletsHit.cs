@@ -18,5 +18,13 @@ public class BulletsHit : MonoBehaviour
             transform.GetChild(1).gameObject.SetActive(true);
             Destroy(transform.gameObject, m_bulletValues.BulletSountHitTime);
         }
+        else if (collision.transform.tag == "Player")
+        {
+            Vector3 soundPos = transform.position;
+            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(1).gameObject.SetActive(true);
+            collision.gameObject.GetComponent<PlayerController>().CurrentHealth -= m_bulletValues.BulletDamage;
+            Destroy(transform.gameObject, m_bulletValues.BulletSountHitTime);
+        }
     }
 }

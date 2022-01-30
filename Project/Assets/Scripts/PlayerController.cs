@@ -2,7 +2,7 @@ using UnityEngine;   // TO-DO: Make Shooting with Action Type Button and add to 
 using System.Collections;
 using TMPro;
 using Cinemachine;
-
+using System.Threading.Tasks;
 
 public class PlayerController : MonoBehaviour
 {
@@ -42,12 +42,32 @@ public class PlayerController : MonoBehaviour
     private int m_currentHealth;
     private string m_enemyName;
 
+    Task<bool> repairingTask;
+
+    public int CurrentHealth
+    {
+        get => m_currentHealth;
+        set
+        {
+            m_currentHealth = value;
+            if (m_currentHealth > m_playerValues.TotalHealth)
+                m_currentHealth = m_playerValues.TotalHealth;
+            else if (m_currentHealth <= 0)
+            {
+                m_currentHealth = 0;
+                Debug.Log("Tank Exploded");
+            }
+            HealthCounterUpdate();
+        }
+    }
+
     private void Awake()
     {
+        repairingTask = new Task<bool>(Repairing().Result);
         m_currentWeaponIndex = PlayerSO.DEFAULT_WEAPON;
         m_pixelPerfect = this.transform.Find("Main Camera").GetComponent<UnityEngine.U2D.PixelPerfectCamera>();
         weaponChange(m_currentWeaponIndex);
-        ChangeHealth(m_playerValues.TotalHealth);
+        CurrentHealth = m_playerValues.TotalHealth;
         m_virtualCamera.Follow = m_head.transform.Find("camerafollow");
     }
 
@@ -198,29 +218,48 @@ public class PlayerController : MonoBehaviour
         m_ammoCounter.text = m_currentAmmo.ToString() + "/" + m_currentAllAmmo.ToString();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Projectile")
-        {
-            m_enemyName = collision.gameObject.name;
-            m_enemyBulletValues = collision.gameObject.GetComponent<BulletsHit>().BulletValues;
-            ChangeHealth(-m_enemyBulletValues.BulletDamage);
-        }
-    }
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     if (collision.gameObject.tag == "Projectile")
+    //     {
+    //         m_enemyName = collision.gameObject.name;
+    //         m_enemyBulletValues = collision.gameObject.GetComponent<BulletsHit>().BulletValues;
+    //         ChangeHealth(-m_enemyBulletValues.BulletDamage);
+    //     }
+    // }
 
 
-    private void ChangeHealth(int amount)
-    {
-        m_currentHealth += amount;
-        if (m_currentHealth <= 0)
-        {
-            Debug.Log("Tank Exploded");
-        }
-        HealthCounterUpdate();
-    }
+    // public void ChangeHealth(int amount)   // public to private then  Using events
+    // {
+    //     CurrentHealth += amount;
+    //     if (CurrentHealth <= 0)
+    //     {
+    //         Debug.Log("Tank Exploded");
+    //     }
+    //     HealthCounterUpdate();
+    // }
 
     private void HealthCounterUpdate()
     {
-        m_healthCounter.text = m_currentHealth.ToString();
+        m_healthCounter.text = CurrentHealth.ToString();
+    }
+
+    public async Task<System.Func<bool>> Repairing()
+    {
+        Debug.Log("Coroutine started");
+        while (CurrentHealth < 100)
+        {
+            Debug.Log("Whiling");
+            await Task.Delay(1200);
+            Debug.Log("After 1 sec");
+            CurrentHealth += 10;
+        }
+        System.Func<bool> so = new System.Func<bool>(() => true);
+        return so;
+    }
+
+    public void repairCaller()
+    {
+        repairingTask.Start();
     }
 }
