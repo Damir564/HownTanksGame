@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource m_audioSource;
 
     // Shooting
-    private WeaponSO m_weaponValues;
+    private WeaponSO m_weaponValues; //Then private! ! !
     private bool m_isNotReloading = true;
     private int m_scopingState = 0;
     private int m_currentWeaponIndex;
@@ -41,8 +41,6 @@ public class PlayerController : MonoBehaviour
     private BulletSO m_enemyBulletValues;
     private int m_currentHealth;
     private string m_enemyName;
-
-    Task<bool> repairingTask;
 
     public int CurrentHealth
     {
@@ -61,9 +59,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public int CurrentAllAmmo
+    {
+        get => m_currentAllAmmo;
+        set
+        {
+            m_currentAllAmmo = m_weaponValues.WeaponAllTotalAmmo;
+            AmmoCounterUpdate();
+        }
+    }
+
     private void Awake()
     {
-        repairingTask = new Task<bool>(Repairing().Result);
         m_currentWeaponIndex = PlayerSO.DEFAULT_WEAPON;
         m_pixelPerfect = this.transform.Find("Main Camera").GetComponent<UnityEngine.U2D.PixelPerfectCamera>();
         weaponChange(m_currentWeaponIndex);
@@ -244,22 +251,25 @@ public class PlayerController : MonoBehaviour
         m_healthCounter.text = CurrentHealth.ToString();
     }
 
-    public async Task<System.Func<bool>> Repairing()
-    {
-        Debug.Log("Coroutine started");
+    private IEnumerator Repairing(){
         while (CurrentHealth < 100)
         {
-            Debug.Log("Whiling");
-            await Task.Delay(1200);
-            Debug.Log("After 1 sec");
-            CurrentHealth += 10;
+            yield return new WaitForSeconds(3);
+            CurrentHealth += 25;
         }
-        System.Func<bool> so = new System.Func<bool>(() => true);
-        return so;
     }
 
-    public void repairCaller()
-    {
-        repairingTask.Start();
-    }
+    // public async Task<System.Func<bool>> Repairing()
+    // {
+    //     Debug.Log("Coroutine started");
+    //     while (CurrentHealth < 100)
+    //     {
+    //         Debug.Log("Whiling");
+    //         await Task.Delay(1200);
+    //         Debug.Log("After 1 sec");
+    //         CurrentHealth += 10;
+    //     }
+    //     System.Func<bool> so = new System.Func<bool>(() => true);
+    //     return so;
+    // }
 }
