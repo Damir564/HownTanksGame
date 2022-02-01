@@ -2,12 +2,11 @@ using UnityEngine;   // TO-DO: Make Shooting with Action Type Button and add to 
 using System.Collections;
 using TMPro;
 using Cinemachine;
-using System.Threading.Tasks;
 
 public class PlayerController : MonoBehaviour
 {
     // Game
-    [SerializeField] private Transform allBulletsParent;
+    private Transform m_allBulletsParent;
 
     // Input
     [SerializeField] private PlayerSO m_playerValues;
@@ -22,7 +21,7 @@ public class PlayerController : MonoBehaviour
     // UI & Cameras
     [SerializeField] private TMP_Text m_ammoCounter;
     [SerializeField] private TMP_Text m_healthCounter;
-    [SerializeField] private GameObject m_weaponImageOuput;
+    [SerializeField] private UnityEngine.UI.Image m_weaponImageOuput;
     [SerializeField] private CinemachineVirtualCamera m_virtualCamera;
     private UnityEngine.U2D.PixelPerfectCamera m_pixelPerfect;
     private Transform m_bulletExit;
@@ -71,8 +70,12 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        m_currentWeaponIndex = PlayerSO.DEFAULT_WEAPON;
+        m_allBulletsParent = GameObject.Find("AllBulletsParent").transform;
+        m_ammoCounter = GameObject.Find("AmmoCounter").GetComponent<TMP_Text>();
+        m_healthCounter = GameObject.Find("HealthCounter").GetComponent<TMP_Text>();
+        m_weaponImageOuput = GameObject.Find("WeaponImageOutput").GetComponent<UnityEngine.UI.Image>();
         m_pixelPerfect = this.transform.Find("Main Camera").GetComponent<UnityEngine.U2D.PixelPerfectCamera>();
+        m_currentWeaponIndex = PlayerSO.DEFAULT_WEAPON;
         weaponChange(m_currentWeaponIndex);
         CurrentHealth = m_playerValues.TotalHealth;
         m_virtualCamera.Follow = m_head.transform.Find("camerafollow");
@@ -180,7 +183,7 @@ public class PlayerController : MonoBehaviour
         if (!m_isNotReloading || m_currentAmmo == 0 || Time.time < m_nextFireTime)
             return;
         m_nextFireTime = Time.time + m_weaponValues.WeaponFireRate;
-        GameObject bullet = Instantiate(m_weaponValues.BulletPrefab, m_bulletExit.position, m_bulletExit.rotation, allBulletsParent);
+        GameObject bullet = Instantiate(m_weaponValues.BulletPrefab, m_bulletExit.position, m_bulletExit.rotation, m_allBulletsParent);
         bullet.name = "Player";
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
         bulletRb.AddForce(m_bulletExit.up * m_weaponValues.BulletForce, ForceMode2D.Impulse);
@@ -215,7 +218,7 @@ public class PlayerController : MonoBehaviour
         m_audioSource = m_head.GetComponent<AudioSource>();
         m_currentAllAmmo = m_weaponValues.WeaponAllTotalAmmo;
         m_currentAmmo = m_weaponValues.WeaponTotalAmmo;
-        m_weaponImageOuput.GetComponent<UnityEngine.UI.Image>().color = new Color32(255, 0, 0, 50);
+        m_weaponImageOuput.color = new Color32(255, 0, 0, 50);
         m_pixelPerfect.assetsPPU = m_weaponValues.WeaponScope[0];
         AmmoCounterUpdate();
     }
@@ -251,25 +254,12 @@ public class PlayerController : MonoBehaviour
         m_healthCounter.text = CurrentHealth.ToString();
     }
 
-    private IEnumerator Repairing(){
+    private IEnumerator Repairing()
+    {
         while (CurrentHealth < 100)
         {
             yield return new WaitForSeconds(3);
             CurrentHealth += 25;
         }
     }
-
-    // public async Task<System.Func<bool>> Repairing()
-    // {
-    //     Debug.Log("Coroutine started");
-    //     while (CurrentHealth < 100)
-    //     {
-    //         Debug.Log("Whiling");
-    //         await Task.Delay(1200);
-    //         Debug.Log("After 1 sec");
-    //         CurrentHealth += 10;
-    //     }
-    //     System.Func<bool> so = new System.Func<bool>(() => true);
-    //     return so;
-    // }
 }
