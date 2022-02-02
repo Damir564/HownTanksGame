@@ -15,7 +15,6 @@ public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
 
     private GameInput m_gameInput;
 
-
     private void OnEnable()
     {
         if (m_gameInput == null)
@@ -72,14 +71,14 @@ public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
     {
         if (m_ReloadingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
             Debug.Log("Reloading");
-            m_ReloadingPerformedEvent.Invoke();
+        m_ReloadingPerformedEvent.Invoke();
     }
 
     public void OnScoping(InputAction.CallbackContext ctx)
     {
         if (m_ScopingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
             Debug.Log("Scoping");
-            m_ScopingPerformedEvent.Invoke();
+        m_ScopingPerformedEvent.Invoke();
     }
     // Weapon
     public enum Weapons

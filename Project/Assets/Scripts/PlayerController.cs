@@ -5,6 +5,9 @@ using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [SerializeField] private Health m_health;
+
     // Game
     private Transform m_allBulletsParent;
 
@@ -37,9 +40,14 @@ public class PlayerController : MonoBehaviour
     private float m_nextFireTime = 0f;
 
     // Health & Damage
-    private BulletSO m_enemyBulletValues;
+    // private BulletSO m_enemyBulletValues;
     private int m_currentHealth;
-    private string m_enemyName;
+    // private string m_enemyName;
+
+    public PlayerSO PlayerValues
+    {
+        get => m_playerValues;
+    }
 
     public int CurrentHealth
     {
@@ -70,6 +78,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+
         m_allBulletsParent = GameObject.Find("AllBulletsParent").transform;
         m_ammoCounter = GameObject.Find("AmmoCounter").GetComponent<TMP_Text>();
         m_healthCounter = GameObject.Find("HealthCounter").GetComponent<TMP_Text>();
@@ -77,7 +86,8 @@ public class PlayerController : MonoBehaviour
         m_pixelPerfect = this.transform.Find("Main Camera").GetComponent<UnityEngine.U2D.PixelPerfectCamera>();
         m_currentWeaponIndex = PlayerSO.DEFAULT_WEAPON;
         weaponChange(m_currentWeaponIndex);
-        CurrentHealth = m_playerValues.TotalHealth;
+        m_health.OnAwake();
+        // CurrentHealth = m_playerValues.TotalHealth;
     }
 
     private void MovementPerformedEvent(Vector2 value)
@@ -127,6 +137,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+
         // Input
         m_playerValues.m_MovementPerformedEvent += MovementPerformedEvent;
         m_playerValues.m_MovementCanceledEvent += MovementCanceledEvent;
@@ -254,7 +265,7 @@ public class PlayerController : MonoBehaviour
     //     HealthCounterUpdate();
     // }
 
-    private void HealthCounterUpdate()
+    public void HealthCounterUpdate()
     {
         m_healthCounter.text = CurrentHealth.ToString();
     }

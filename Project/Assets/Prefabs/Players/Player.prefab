@@ -220,7 +220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3369680283151768961}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2999998, z: -10}
+  m_LocalPosition: {x: 0, y: 1.2999997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4491775048229369700}
@@ -511,6 +511,7 @@ GameObject:
   - component: {fileID: 4491775048229369701}
   - component: {fileID: 7135623614751215071}
   - component: {fileID: 9057601582515878676}
+  - component: {fileID: 1399297294}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -568,7 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb6b56e66febb842bd42708f0ebb009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allBulletsParent: {fileID: 0}
+  m_health: {fileID: 1399297294}
   m_playerValues: {fileID: 11400000, guid: 2106cbf4d3b013f4197c204f345abe34, type: 2}
   m_rb: {fileID: 4491775048229369702}
   m_body: {fileID: 1599706691993816811}
@@ -643,3 +644,16 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &1399297294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4491775048229369697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 750c4048fc2556e4998c552cecff8081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerController: {fileID: 4491775048229369701}
