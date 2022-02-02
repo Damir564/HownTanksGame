@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4877f8ad6244c624091755f8dde2537f, type: 3}
   m_Name: Machine
   m_EditorClassIdentifier: 
-  m_bulletPrefab: {fileID: 0}
-  m_headPrefab: {fileID: 0}
+  m_bulletPrefab: {fileID: 1822093461854596029, guid: 9d2eb676a168005468df67433f1a88fa, type: 3}
+  m_headPrefab: {fileID: 6229679254766868004, guid: d1011e0fc02a3a540b81b499cb906f00, type: 3}
   m_bulletForce: 6
   m_bulletDestroyTime: 6
-  m_bulletSoundShoot: {fileID: 0}
+  m_weaponSoundShoot: {fileID: 8300000, guid: 7f785c32f1a4bd34abd6e76e0484ef5c, type: 3}
   m_weaponFireRate: 0.25
   m_weaponReloadTime: 6
   m_weaponAllTotalAmmo: 560
   m_weaponTotalAmmo: 80
+  m_weaponScope: a80000000a000000

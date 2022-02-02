@@ -78,7 +78,6 @@ public class PlayerController : MonoBehaviour
         m_currentWeaponIndex = PlayerSO.DEFAULT_WEAPON;
         weaponChange(m_currentWeaponIndex);
         CurrentHealth = m_playerValues.TotalHealth;
-        m_virtualCamera.Follow = m_head.transform.Find("camerafollow");
     }
 
     private void MovementPerformedEvent(Vector2 value)
@@ -210,8 +209,13 @@ public class PlayerController : MonoBehaviour
         AmmoCounterUpdate();
     }
 
-    private void weaponChange(int weaponid)
+    public void weaponChange(int weaponid)    // was private now public
     {
+        // if (m_head != null)
+        // {
+        //     Destroy(m_weaponValues.HeadPrefab.transform.gameObject);
+        //     m_head = null;
+        // }
         m_weaponValues = m_playerValues.WeaponSOs[weaponid];
         m_head = Instantiate(m_weaponValues.HeadPrefab, transform);
         m_bulletExit = m_head.transform.GetChild(0);
@@ -221,6 +225,7 @@ public class PlayerController : MonoBehaviour
         m_weaponImageOuput.color = new Color32(255, 0, 0, 50);
         m_pixelPerfect.assetsPPU = m_weaponValues.WeaponScope[0];
         AmmoCounterUpdate();
+        m_virtualCamera.Follow = m_head.transform.Find("camerafollow");
     }
 
     private void AmmoCounterUpdate()
