@@ -35,7 +35,7 @@ https://blog.theknightsofunity.com/monobehavior-calls-optimization/ there is an 
 +fences have to be added on the edges of map and around the forest
 -add bullet sprite to our bullet prefab
 +(bulletexitwasmoved)-when the rotation of tank is on diagonals and shootinh, tank get damage - need to fix it
--road crossing sprite or bomb pit sprite
+-road crossing sprite and bomb pit sprite
 +forest sprite
 
 - -fix camera jittering
@@ -44,3 +44,6 @@ https://blog.theknightsofunity.com/monobehavior-calls-optimization/ there is an 
   -health boxes has to be added
   -random spawn of items has to be added
   -multiplayer what api to use?
+
+  -repairing sprite(like welding appearing near the tank, or plus signs near a tank)
+  -repairing animation

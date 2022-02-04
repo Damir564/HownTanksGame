@@ -1,51 +1,67 @@
 using UnityEngine;
+using System.Collections;
 
-public class Health : MonoBehaviour, IPlayerComonent
+public class Health : PlayerModule
 {
-    [SerializeField] PlayerController m_playerController;
     private BulletSO m_enemyBulletValues;
     private string m_enemyName;
 
-    // private int m_currentHealth;
-    // public int CurrentHealth
-    // {
-    //     get => m_currentHealth;
-    //     set
-    //     {
-    //         m_currentHealth = value;
-    //         if (m_currentHealth > m_playerController.PlayerValues.TotalHealth)
-    //             m_currentHealth = m_playerController.PlayerValues.TotalHealth;
-    //         else if (m_currentHealth <= 0)
-    //         {
-    //             m_currentHealth = 0;
-    //             Debug.Log("Tank Exploded");
-    //         }
-    //         m_playerController.HealthCounterUpdate();
-    //     }
-    // }
-
-    private void OnEnable()
+    private int m_currentHealth;
+    public int CurrentHealth
     {
-        GameEventSO.Instance.onBulletHit += OnBulletHit;
+        get => m_currentHealth;
+        set
+        {
+            m_currentHealth = value;
+            if (m_currentHealth > m_playerController.PlayerValues.TotalHealth)
+                m_currentHealth = m_playerController.PlayerValues.TotalHealth;
+            else if (m_currentHealth <= 0)
+            {
+                m_currentHealth = 0;
+                Debug.Log("Tank Exploded");
+            }
+            m_playerController.PlayerValues.RaiseHealthChangedEvent(m_currentHealth);
+        }
     }
 
-    private void OnDisable()
+    public override void OnOnEnable()
     {
-        GameEventSO.Instance.onBulletHit -= OnBulletHit;
+        GameEventSO.Instance.BulletPlayerHitEvent += OnBulletHit;
+        GameEventSO.Instance.RepairingEvent += OnRepairing;
+
+        CurrentHealth = m_playerController.PlayerValues.TotalHealth;
+    }
+
+    public override void OnOnDisable()
+    {
+        GameEventSO.Instance.BulletPlayerHitEvent -= OnBulletHit;
+        GameEventSO.Instance.RepairingEvent -= OnRepairing;
+    }
+
+    private void OnRepairing(string playerName)
+    {
+        if (playerName != m_playerController.name)
+            return;
+
+        m_playerController.StartCoroutine(Repairing());
+    }
+
+    private IEnumerator Repairing()
+    {
+        while (CurrentHealth < 100)
+        {
+            yield return new WaitForSeconds(3);
+            CurrentHealth += 25;
+        }
     }
 
     private void OnBulletHit(string playerName, string enemyName, BulletSO enemyBullet)
     {
-        if (playerName == name)
+        if (playerName == m_playerController.name)
         {
-            Debug.Log("selfharm");
+            Debug.Log("selfhurm");
+            // return;
         }
-        m_playerController.CurrentHealth -= enemyBullet.BulletDamage;
-    }
-
-
-    public void OnAwake()
-    {
-        m_playerController.CurrentHealth = m_playerController.PlayerValues.TotalHealth;
+        CurrentHealth -= enemyBullet.BulletDamage;
     }
 }

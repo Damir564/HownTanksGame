@@ -22,3 +22,4 @@ MonoBehaviour:
   m_weaponAllTotalAmmo: 96
   m_weaponTotalAmmo: 6
   m_weaponScope: a80000000a000000
+  m_weaponImage: {r: 1, g: 0, b: 0, a: 0.19607843}

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RepairKitController : MonoBehaviour
@@ -8,9 +6,11 @@ public class RepairKitController : MonoBehaviour
     {
         if (collider.transform.parent.gameObject.tag == "Player")
         {
-            Debug.Log("PlayerInTrigger");
-            collider.transform.parent.gameObject.GetComponent<PlayerController>().StartCoroutine("Repairing");
+
+            //collider.transform.parent.gameObject.GetComponent<PlayerController>().StartCoroutine("Repairing");
+            GameEventSO.Instance.RaiseRepairingEvent(collider.transform.parent.name);
             Destroy(transform.gameObject);
+            Debug.Log("Player with name \"" + collider.transform.parent.name + "\" зачилился");
         }
     }
 }

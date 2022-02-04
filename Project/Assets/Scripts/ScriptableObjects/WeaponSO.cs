@@ -15,6 +15,7 @@ public class WeaponSO : ScriptableObject
     [SerializeField] private int m_weaponAllTotalAmmo;
     [SerializeField] private int m_weaponTotalAmmo;
     [SerializeField] private int[] m_weaponScope;
+    [SerializeField] private Color m_weaponImage;
 
 
     public GameObject BulletPrefab
@@ -56,5 +57,9 @@ public class WeaponSO : ScriptableObject
     public int[] WeaponScope
     {
         get => m_weaponScope;
+    }
+    public Color WeaponImage
+    {
+        get => m_weaponImage;
     }
 }

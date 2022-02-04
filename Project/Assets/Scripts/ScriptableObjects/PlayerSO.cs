@@ -5,13 +5,42 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "ScriptableObjects/PlayerSO", order = 1)]
 public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
 {
+    // PlayerEvents
+    public event UnityAction<int> HealthChangedEvent;
+    public event UnityAction<string> AmmoChangedEvent;
+    public event UnityAction ShootingEvent;
+    public event UnityAction<int> ScopeChangedEvent;
+    public event UnityAction<Color, Transform> WeaponImageAndCameraFollowChangeEvent; // change Color to Image when sprites are ready
+
+    public void RaiseHealthChangedEvent(in int value)
+    {
+        HealthChangedEvent?.Invoke(value);
+    }
+    public void RaiseAmmoChangedEvent(in string value)
+    {
+        AmmoChangedEvent?.Invoke(value);
+    }
+    public void RaiseShootingEvent()
+    {
+        ShootingEvent?.Invoke();
+    }
+    public void RaiseScopeChangedEvent(in int value)
+    {
+        ScopeChangedEvent?.Invoke(value);
+    }
+    public void RaiseWeaponImageAndCameraFollowChangeEvent(in Color image, in Transform cameraFollowTransform)
+    {
+        WeaponImageAndCameraFollowChangeEvent?.Invoke(image, cameraFollowTransform);
+    }
+
+
     // Input
-    public event UnityAction<Vector2> m_MovementPerformedEvent;
-    public event UnityAction m_MovementCanceledEvent;
-    public event UnityAction<Vector2> m_AimingPerformedEvent;
-    public event UnityAction m_AimingCanceledEvent;
-    public event UnityAction m_ReloadingPerformedEvent;
-    public event UnityAction m_ScopingPerformedEvent;
+    public event UnityAction<Vector2> MovementPerformedEvent;
+    public event UnityAction MovementCanceledEvent;
+    public event UnityAction<Vector2> AimingPerformedEvent;
+    public event UnityAction AimingCanceledEvent;
+    public event UnityAction ReloadingPerformedEvent;
+    public event UnityAction ScopingPerformedEvent;
 
     private GameInput m_gameInput;
 
@@ -42,10 +71,10 @@ public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
 
     public void OnMovement(InputAction.CallbackContext ctx)
     {
-        if (m_MovementPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
-            m_MovementPerformedEvent.Invoke(ctx.ReadValue<Vector2>());
-        if (m_MovementCanceledEvent != null && ctx.phase == InputActionPhase.Canceled)
-            m_MovementCanceledEvent.Invoke();
+        if (MovementPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
+            MovementPerformedEvent.Invoke(ctx.ReadValue<Vector2>());
+        if (MovementCanceledEvent != null && ctx.phase == InputActionPhase.Canceled)
+            MovementCanceledEvent.Invoke();
     }
 
     ///***
@@ -53,32 +82,32 @@ public class PlayerSO : ScriptableObject, GameInput.IPlayerActions
     ///***
     public void OnMovement2(InputAction.CallbackContext ctx)
     {
-        if (m_MovementPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
-            m_MovementPerformedEvent.Invoke(ctx.ReadValue<Vector2>());
-        if (m_MovementCanceledEvent != null && ctx.phase == InputActionPhase.Canceled)
-            m_MovementCanceledEvent.Invoke();
+        if (MovementPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
+            MovementPerformedEvent.Invoke(ctx.ReadValue<Vector2>());
+        if (MovementCanceledEvent != null && ctx.phase == InputActionPhase.Canceled)
+            MovementCanceledEvent.Invoke();
     }
 
     public void OnAiming(InputAction.CallbackContext ctx)
     {
-        if (m_AimingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
-            m_AimingPerformedEvent.Invoke(ctx.ReadValue<Vector2>());
-        if (m_AimingCanceledEvent != null && ctx.phase == InputActionPhase.Canceled)
-            m_AimingCanceledEvent.Invoke();
+        if (AimingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
+            AimingPerformedEvent.Invoke(ctx.ReadValue<Vector2>());
+        if (AimingCanceledEvent != null && ctx.phase == InputActionPhase.Canceled)
+            AimingCanceledEvent.Invoke();
     }
 
     public void OnReloading(InputAction.CallbackContext ctx)
     {
-        if (m_ReloadingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
+        if (ReloadingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
             Debug.Log("Reloading");
-        m_ReloadingPerformedEvent.Invoke();
+        ReloadingPerformedEvent.Invoke();
     }
 
     public void OnScoping(InputAction.CallbackContext ctx)
     {
-        if (m_ScopingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
+        if (ScopingPerformedEvent != null && ctx.phase == InputActionPhase.Performed)
             Debug.Log("Scoping");
-        m_ScopingPerformedEvent.Invoke();
+        ScopingPerformedEvent.Invoke();
     }
     // Weapon
     public enum Weapons
