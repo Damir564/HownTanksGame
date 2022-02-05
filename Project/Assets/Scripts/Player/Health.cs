@@ -20,22 +20,22 @@ public class Health : PlayerModule
                 m_currentHealth = 0;
                 Debug.Log("Tank Exploded");
             }
-            m_playerController.PlayerValues.RaiseHealthChangedEvent(m_currentHealth);
+            GameManager.Instance.PlayerEvents.RaiseHealthChangedEvent(m_currentHealth);
         }
     }
 
     public override void OnOnEnable()
     {
-        GameEventsSO.Instance.BulletPlayerHitEvent += OnBulletHit;
-        GameEventsSO.Instance.RepairingEvent += OnRepairing;
+        GameManager.Instance.GameEvents.BulletPlayerHitEvent += OnBulletHit;
+        GameManager.Instance.GameEvents.RepairingEvent += OnRepairing;
 
         CurrentHealth = m_playerController.PlayerValues.TotalHealth;
     }
 
     public override void OnOnDisable()
     {
-        GameEventsSO.Instance.BulletPlayerHitEvent -= OnBulletHit;
-        GameEventsSO.Instance.RepairingEvent -= OnRepairing;
+        GameManager.Instance.GameEvents.BulletPlayerHitEvent -= OnBulletHit;
+        GameManager.Instance.GameEvents.RepairingEvent -= OnRepairing;
     }
 
     private void OnRepairing(string playerName)

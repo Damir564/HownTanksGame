@@ -25,7 +25,7 @@ public class BulletsHit : MonoBehaviour
             Vector3 soundPos = transform.position;
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(true);
-            GameEventsSO.Instance.RaiseBulletPlayerHitEvent(collision.gameObject.name, gameObject.name, m_bulletValues);
+            GameManager.Instance.GameEvents.RaiseBulletPlayerHitEvent(collision.gameObject.name, gameObject.name, m_bulletValues);
             Debug.Log("Player with name \"" + collision.gameObject.name + "\" получил пулю");
             Destroy(transform.gameObject, m_bulletValues.BulletSountHitTime);
         }

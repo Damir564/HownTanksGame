@@ -8,7 +8,7 @@ public class RepairKitController : MonoBehaviour
         {
 
             //collider.transform.parent.gameObject.GetComponent<PlayerController>().StartCoroutine("Repairing");
-            GameEventsSO.Instance.RaiseRepairingEvent(collider.transform.parent.name);
+            GameManager.Instance.GameEvents.RaiseRepairingEvent(collider.transform.parent.name);
             Destroy(transform.gameObject);
             Debug.Log("Player with name \"" + collider.transform.parent.name + "\" зачилился");
         }

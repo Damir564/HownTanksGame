@@ -11,7 +11,7 @@ public class Fire : PlayerModule
     private WeaponSO m_weaponValues;
     private bool m_isNotReloading = true;
     private int m_scopingState = 0;
-    private int m_currentWeaponIndex = PlayerSO.DEFAULT_WEAPON;
+    private int m_currentWeaponIndex;
     private int m_currentAllAmmo;
     private int m_currentAmmo;
     private float m_nextFireTime = 0f;
@@ -19,24 +19,25 @@ public class Fire : PlayerModule
     public override void OnAwake()
     {
         m_allBulletsParent = GameObject.Find("AllBulletsParent").transform;
+        m_currentWeaponIndex = GameManager.Instance.Mode.StartWeaponIndex;
     }
 
     public override void OnOnEnable()
     {
-        m_playerController.PlayerValues.ReloadingPerformedEvent += OnReloading;
-        m_playerController.PlayerValues.ScopingPerformedEvent += OnScoping;
-        m_playerController.PlayerValues.ShootingEvent += Shooting;
-        GameEventsSO.Instance.WeaponChangeEvent += WeaponChange;
+        GameManager.Instance.InputEvents.ReloadingPerformedEvent += OnReloading;
+        GameManager.Instance.InputEvents.ScopingPerformedEvent += OnScoping;
+        GameManager.Instance.PlayerEvents.ShootingEvent += Shooting;
+        GameManager.Instance.GameEvents.WeaponChangeEvent += WeaponChange;
 
         WeaponChange(m_currentWeaponIndex);
     }
 
     public override void OnOnDisable()
     {
-        m_playerController.PlayerValues.ReloadingPerformedEvent -= OnReloading;
-        m_playerController.PlayerValues.ScopingPerformedEvent -= OnScoping;
-        m_playerController.PlayerValues.ShootingEvent -= Shooting;
-        GameEventsSO.Instance.WeaponChangeEvent -= WeaponChange;
+        GameManager.Instance.InputEvents.ReloadingPerformedEvent -= OnReloading;
+        GameManager.Instance.InputEvents.ScopingPerformedEvent -= OnScoping;
+        GameManager.Instance.PlayerEvents.ShootingEvent -= Shooting;
+        GameManager.Instance.GameEvents.WeaponChangeEvent -= WeaponChange;
     }
 
 
@@ -54,18 +55,18 @@ public class Fire : PlayerModule
     {
         OnScopeChanged();
         OnAmmoAmountChanged();
-        m_playerController.PlayerValues.RaiseWeaponImageAndCameraFollowChangeEvent(m_weaponValues.WeaponImage, m_head.transform.GetChild(1));
+        GameManager.Instance.PlayerEvents.RaiseWeaponImageAndCameraFollowChangeEvent(m_weaponValues.WeaponImage, m_head.transform.GetChild(1));
     }
 
     private void OnScopeChanged()
     {
-        m_playerController.PlayerValues.RaiseScopeChangedEvent(m_weaponValues.WeaponScope[m_scopingState]);
+        GameManager.Instance.PlayerEvents.RaiseScopeChangedEvent(m_weaponValues.WeaponScope[m_scopingState]);
     }
 
     private void OnAmmoAmountChanged()
     {
         string temp = m_currentAmmo + "/" + m_currentAllAmmo;
-        m_playerController.PlayerValues.RaiseAmmoChangedEvent(temp);
+        GameManager.Instance.PlayerEvents.RaiseAmmoChangedEvent(temp);
     }
 
     private void OnScoping()
@@ -106,7 +107,7 @@ public class Fire : PlayerModule
             Debug.Log(m_head);
             m_head = null;
         }
-        m_weaponValues = m_playerController.PlayerValues.WeaponSOs[weaponid];
+        m_weaponValues = GameManager.Instance.Mode.WeaponSOs[weaponid];
         m_head = Instantiate(m_weaponValues.HeadPrefab, m_playerController.HeadHandler.transform);
         m_bulletExit = m_head.transform.GetChild(0);
         m_audioSource = m_head.GetComponent<AudioSource>();

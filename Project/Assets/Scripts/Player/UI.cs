@@ -13,18 +13,18 @@ public class UI : PlayerModule
 
     public override void OnOnEnable()
     {
-        m_playerController.PlayerValues.HealthChangedEvent += OnHealthChanged;
-        m_playerController.PlayerValues.AmmoChangedEvent += OnAmmoChanged;
-        m_playerController.PlayerValues.ScopeChangedEvent += OnScopeChanged;
-        m_playerController.PlayerValues.WeaponImageAndCameraFollowChangeEvent += WeaponImageAndCameraFollowChange;
+        GameManager.Instance.PlayerEvents.HealthChangedEvent += OnHealthChanged;
+        GameManager.Instance.PlayerEvents.AmmoChangedEvent += OnAmmoChanged;
+        GameManager.Instance.PlayerEvents.ScopeChangedEvent += OnScopeChanged;
+        GameManager.Instance.PlayerEvents.WeaponImageAndCameraFollowChangeEvent += WeaponImageAndCameraFollowChange;
     }
 
     public override void OnOnDisable()
     {
-        m_playerController.PlayerValues.HealthChangedEvent -= OnHealthChanged;
-        m_playerController.PlayerValues.AmmoChangedEvent -= OnAmmoChanged;
-        m_playerController.PlayerValues.ScopeChangedEvent -= OnScopeChanged;
-        m_playerController.PlayerValues.WeaponImageAndCameraFollowChangeEvent -= WeaponImageAndCameraFollowChange;
+        GameManager.Instance.PlayerEvents.HealthChangedEvent -= OnHealthChanged;
+        GameManager.Instance.PlayerEvents.AmmoChangedEvent -= OnAmmoChanged;
+        GameManager.Instance.PlayerEvents.ScopeChangedEvent -= OnScopeChanged;
+        GameManager.Instance.PlayerEvents.WeaponImageAndCameraFollowChangeEvent -= WeaponImageAndCameraFollowChange;
     }
 
 

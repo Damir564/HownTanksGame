@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/GameEventSO", order = 4)]
-public class GameEventsSO : SingletonScriptableObject<GameEventsSO>
+[CreateAssetMenu(menuName = "ScriptableObjects/GameEventsSO", order = 4)]
+public class GameEventsSO : ScriptableObject //SingletonScriptableObject<GameEventsSO>
 {
     public event UnityAction<string, string, BulletSO> BulletPlayerHitEvent;
     public event UnityAction<string> RepairingEvent;
