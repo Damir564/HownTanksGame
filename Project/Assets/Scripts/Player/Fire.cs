@@ -26,7 +26,7 @@ public class Fire : PlayerModule
         m_playerController.PlayerValues.ReloadingPerformedEvent += OnReloading;
         m_playerController.PlayerValues.ScopingPerformedEvent += OnScoping;
         m_playerController.PlayerValues.ShootingEvent += Shooting;
-        GameEventSO.Instance.WeaponChangeEvent += WeaponChange;
+        GameEventsSO.Instance.WeaponChangeEvent += WeaponChange;
 
         WeaponChange(m_currentWeaponIndex);
     }
@@ -36,7 +36,7 @@ public class Fire : PlayerModule
         m_playerController.PlayerValues.ReloadingPerformedEvent -= OnReloading;
         m_playerController.PlayerValues.ScopingPerformedEvent -= OnScoping;
         m_playerController.PlayerValues.ShootingEvent -= Shooting;
-        GameEventSO.Instance.WeaponChangeEvent -= WeaponChange;
+        GameEventsSO.Instance.WeaponChangeEvent -= WeaponChange;
     }
 
 

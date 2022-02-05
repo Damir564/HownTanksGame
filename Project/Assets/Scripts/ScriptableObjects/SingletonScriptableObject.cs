@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SingletonScriptableObject<T> : ScriptableObject where T : SingletonScriptableObject<T>
 {
-    [SerializeField] private static T m_instance;
+    protected static T m_instance;
 
     public static T Instance
     {

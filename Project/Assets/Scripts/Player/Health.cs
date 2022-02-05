@@ -26,16 +26,16 @@ public class Health : PlayerModule
 
     public override void OnOnEnable()
     {
-        GameEventSO.Instance.BulletPlayerHitEvent += OnBulletHit;
-        GameEventSO.Instance.RepairingEvent += OnRepairing;
+        GameEventsSO.Instance.BulletPlayerHitEvent += OnBulletHit;
+        GameEventsSO.Instance.RepairingEvent += OnRepairing;
 
         CurrentHealth = m_playerController.PlayerValues.TotalHealth;
     }
 
     public override void OnOnDisable()
     {
-        GameEventSO.Instance.BulletPlayerHitEvent -= OnBulletHit;
-        GameEventSO.Instance.RepairingEvent -= OnRepairing;
+        GameEventsSO.Instance.BulletPlayerHitEvent -= OnBulletHit;
+        GameEventsSO.Instance.RepairingEvent -= OnRepairing;
     }
 
     private void OnRepairing(string playerName)

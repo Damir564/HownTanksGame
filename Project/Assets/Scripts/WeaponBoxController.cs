@@ -8,7 +8,7 @@ public class WeaponBoxController : MonoBehaviour
     {
         if (collider.transform.parent.gameObject.tag == "Player")
         {
-            GameEventSO.Instance.RaiseWeaponChangeEvent(m_weaponId);
+            GameEventsSO.Instance.RaiseWeaponChangeEvent(m_weaponId);
             Debug.Log("PlayerInTrigger");
             Destroy(transform.gameObject);
         }
