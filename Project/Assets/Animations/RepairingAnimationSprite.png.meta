@@ -1,0 +1,480 @@
+fileFormatVersion: 2
+guid: 744b08d3c2eec8c42ae1ab03d49f8d78
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 39683204592854712
+    second: RepairingAnimationSprite_0
+  - first:
+      213: -4600365411606162450
+    second: RepairingAnimationSprite_1
+  - first:
+      213: 6144130007152744029
+    second: RepairingAnimationSprite_2
+  - first:
+      213: 7094830212237824527
+    second: RepairingAnimationSprite_3
+  - first:
+      213: -7638871536917472487
+    second: RepairingAnimationSprite_4
+  - first:
+      213: -4149588414725617611
+    second: RepairingAnimationSprite_5
+  - first:
+      213: 4616828465495159313
+    second: RepairingAnimationSprite_6
+  - first:
+      213: 9102144694237856484
+    second: RepairingAnimationSprite_8
+  - first:
+      213: -1907126111316649471
+    second: RepairingAnimationSprite_9
+  - first:
+      213: 1401966393079482336
+    second: RepairingAnimationSprite_10
+  - first:
+      213: 6369868706444693663
+    second: RepairingAnimationSprite_11
+  - first:
+      213: -8460216656874582767
+    second: RepairingAnimationSprite_12
+  - first:
+      213: 4666365982753500837
+    second: RepairingAnimationSprite_13
+  - first:
+      213: 7510191139635557394
+    second: RepairingAnimationSprite_14
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RepairingAnimationSprite_0
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 217
+        width: 14
+        height: 19
+      alignment: 9
+      pivot: {x: 0.272692, y: 0.70936507}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b66e411aabfc8000800000000000000
+      internalID: 39683204592854712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RepairingAnimationSprite_1
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 218
+        width: 26
+        height: 16
+      alignment: 9
+      pivot: {x: 0.46102494, y: 0.9364042}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee3983c28083820c0800000000000000
+      internalID: -4600365411606162450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RepairingAnimationSprite_2
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 189
+        width: 33
+        height: 20
+      alignment: 9
+      pivot: {x: 0.57485026, y: 0.7506752}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d56582240b5544550800000000000000
+      internalID: 6144130007152744029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RepairingAnimationSprite_3
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 189
+        width: 35
+        height: 23
+      alignment: 9
+      pivot: {x: 0.6008499, y: 0.64942867}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f02152eec76e57260800000000000000
+      internalID: 7094830212237824527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RepairingAnimationSprite_4
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 187
+        width: 39
+        height: 24
+      alignment: 9
+      pivot: {x: 0.639783, y: 0.62419635}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91b11354fc64df590800000000000000
+      internalID: -7638871536917472487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RepairingAnimationSprite_5
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 187
+        width: 36
+        height: 25
+      alignment: 9
+      pivot: {x: 0.61041343, y: 0.6014545}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53804308253b966c0800000000000000
+      internalID: -4149588414725617611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RepairingAnimationSprite_6
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 155
+        width: 36
+        height: 24
+      alignment: 9
+      pivot: {x: 0.6110097, y: 0.6246217}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11230c24705421040800000000000000
+      internalID: 4616828465495159313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RepairingAnimationSprite_8
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 155
+        width: 37
+        height: 24
+      alignment: 9
+      pivot: {x: 0.6215305, y: 0.62321854}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e2014acf50515e70800000000000000
+      internalID: 9102144694237856484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RepairingAnimationSprite_9
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 156
+        width: 36
+        height: 24
+      alignment: 9
+      pivot: {x: 0.6100059, y: 0.62448055}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10a5919f7e68885e0800000000000000
+      internalID: -1907126111316649471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RepairingAnimationSprite_10
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 155
+        width: 36
+        height: 24
+      alignment: 9
+      pivot: {x: 0.61099625, y: 0.62487096}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e7c98ea109c47310800000000000000
+      internalID: 1401966393079482336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RepairingAnimationSprite_11
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 128
+        width: 36
+        height: 24
+      alignment: 9
+      pivot: {x: 0.61111134, y: 0.62416714}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f905389e6d1566850800000000000000
+      internalID: 6369868706444693663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RepairingAnimationSprite_12
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 128
+        width: 36
+        height: 25
+      alignment: 9
+      pivot: {x: 0.61059546, y: 0.5994031}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11dc52456c5479a80800000000000000
+      internalID: -8460216656874582767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RepairingAnimationSprite_13
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 128
+        width: 37
+        height: 22
+      alignment: 9
+      pivot: {x: 0.6213659, y: 0.683}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ae2df9432342c040800000000000000
+      internalID: 4666365982753500837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RepairingAnimationSprite_14
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 129
+        width: 31
+        height: 21
+      alignment: 9
+      pivot: {x: 0.5496019, y: 0.71522814}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21473410d0f893860800000000000000
+      internalID: 7510191139635557394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
