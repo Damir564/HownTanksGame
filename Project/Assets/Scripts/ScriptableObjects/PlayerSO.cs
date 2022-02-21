@@ -10,6 +10,10 @@ public class PlayerSO : ScriptableObject
     [SerializeField] private float m_shootZone;
     [SerializeField] private int m_totalHealth;
 
+    // Player's animations:
+
+    // [SerializeField] private GameObject m_repairingAnimationObject;
+
     public float MovementSpeed
     {
         get => m_movementSpeed;
@@ -31,4 +35,12 @@ public class PlayerSO : ScriptableObject
     {
         get => m_totalHealth;
     }
+
+    // public GameObject RepairingAnimationObject
+    // {
+    //     get{
+    //         m_repairingAnimationObject.SetActive(false);
+    //         return m_repairingAnimationObject;
+    //     }
+    // }
 }

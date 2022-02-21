@@ -6,7 +6,6 @@ public class RepairKitController : MonoBehaviour
     {
         if (collider.transform.parent.gameObject.tag == "Player")
         {
-
             //collider.transform.parent.gameObject.GetComponent<PlayerController>().StartCoroutine("Repairing");
             GameManager.Instance.GameEvents.RaiseRepairingEvent(collider.transform.parent.name);
             Destroy(transform.gameObject);

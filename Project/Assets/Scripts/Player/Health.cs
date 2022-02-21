@@ -7,7 +7,10 @@ public class Health : PlayerModule
     private string m_enemyName;
 
     private int m_currentHealth;
+
+    private GameObject RepairingAnimation;
     public int CurrentHealth
+    
     {
         get => m_currentHealth;
         set
@@ -43,6 +46,8 @@ public class Health : PlayerModule
         if (playerName != m_playerController.name)
             return;
 
+        m_playerController.AnimationChange(true); //this
+
         m_playerController.StartCoroutine(Repairing());
     }
 
@@ -53,6 +58,7 @@ public class Health : PlayerModule
             yield return new WaitForSeconds(3);
             CurrentHealth += 25;
         }
+        m_playerController.AnimationChange(false); //this
     }
 
     private void OnBulletHit(string playerName, string enemyName, BulletSO enemyBullet)

@@ -17,10 +17,18 @@ public class PlayerController : MonoBehaviour
     private bool m_isMovePressed = false;
     private bool m_isAimingPressed = false;
 
+    //Animations
+    [SerializeField] private GameObject m_repairingAnimationObject;
+
     public GameObject HeadHandler
     {
         get => m_headHandler;
     }
+
+    // public GameObject RepairingAnimationObject
+    // {
+    //     get => m_repairingAnimationObject;
+    // }
 
     public PlayerSO PlayerValues
     {
@@ -104,5 +112,10 @@ public class PlayerController : MonoBehaviour
         m_headHandler.transform.rotation = Quaternion.RotateTowards(m_headHandler.transform.rotation, toHeadRotation, Time.fixedDeltaTime * m_playerValues.RotationSpeedHead);
         if (m_aiming.sqrMagnitude >= m_playerValues.ShootZone)
             GameManager.Instance.PlayerEvents.RaiseShootingEvent();
+    }
+
+    public void AnimationChange(bool b)
+    {
+        m_repairingAnimationObject.SetActive(b);
     }
 }
