@@ -21,5 +21,8 @@ MonoBehaviour:
   m_weaponReloadTime: 6
   m_weaponAllTotalAmmo: 560
   m_weaponTotalAmmo: 80
-  m_weaponScope: a80000000a000000
+  m_weaponScope: a800000082000000
+  m_weaponScopeMultiplier:
+  - 1
+  - 4
   m_weaponImage: {r: 0.24056605, g: 0.33677724, b: 0.9622642, a: 0.19607843}

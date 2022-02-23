@@ -13,5 +13,16 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   m_bulletPrefab: {fileID: 0}
+  m_headPrefab: {fileID: 0}
   m_bulletForce: 15
   m_bulletDestroyTime: 2
+  m_weaponSoundShoot: {fileID: 0}
+  m_weaponFireRate: 0
+  m_weaponReloadTime: 0
+  m_weaponAllTotalAmmo: 0
+  m_weaponTotalAmmo: 0
+  m_weaponScope: a80000003c000000
+  m_weaponScopeMultiplier:
+  - 1
+  - 1.5
+  m_weaponImage: {r: 0, g: 0, b: 0, a: 0}

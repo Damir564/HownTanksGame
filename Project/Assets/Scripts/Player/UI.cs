@@ -11,6 +11,8 @@ public class UI : PlayerModule
     [SerializeField] private CinemachineVirtualCamera m_virtualCamera;
     [SerializeField] private UnityEngine.U2D.PixelPerfectCamera m_pixelPerfect;
 
+    private Vector3 m_cameraFollowStartVector;
+
     public override void OnOnEnable()
     {
         GameManager.Instance.PlayerEvents.HealthChangedEvent += OnHealthChanged;
@@ -36,13 +38,19 @@ public class UI : PlayerModule
     {
         m_ammoCounter.text = value;
     }
-    private void OnScopeChanged(int value)
+    private void OnScopeChanged(int value, float multiplier)
     {
         m_pixelPerfect.assetsPPU = value;
+        Debug.Log(m_virtualCamera.Follow.localPosition);
+        m_virtualCamera.Follow.localPosition = new Vector3(m_cameraFollowStartVector.x,
+        m_cameraFollowStartVector.y * multiplier,
+        m_cameraFollowStartVector.z);
+        Debug.Log(m_virtualCamera.Follow.localPosition);
     }
     private void WeaponImageAndCameraFollowChange(Color image, Transform cameraFollowTransform)
     {
         m_weaponImageOuput.color = image;
         m_virtualCamera.Follow = cameraFollowTransform;
+        m_cameraFollowStartVector = m_virtualCamera.Follow.localPosition;
     }
 }

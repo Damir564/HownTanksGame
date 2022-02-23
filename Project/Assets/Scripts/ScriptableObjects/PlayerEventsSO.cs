@@ -8,7 +8,7 @@ public class PlayerEventsSO : ScriptableObject
     public event UnityAction<int> HealthChangedEvent;
     public event UnityAction<string> AmmoChangedEvent;
     public event UnityAction ShootingEvent;
-    public event UnityAction<int> ScopeChangedEvent;
+    public event UnityAction<int, float> ScopeChangedEvent;
     public event UnityAction<Color, Transform> WeaponImageAndCameraFollowChangeEvent; // change Color to Image when sprites are ready
 
     public void RaiseHealthChangedEvent(in int value)
@@ -23,9 +23,9 @@ public class PlayerEventsSO : ScriptableObject
     {
         ShootingEvent?.Invoke();
     }
-    public void RaiseScopeChangedEvent(in int value)
+    public void RaiseScopeChangedEvent(in int value, in float valueMultiplier)
     {
-        ScopeChangedEvent?.Invoke(value);
+        ScopeChangedEvent?.Invoke(value, valueMultiplier);
     }
     public void RaiseWeaponImageAndCameraFollowChangeEvent(in Color image, in Transform cameraFollowTransform)
     {

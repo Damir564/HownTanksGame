@@ -39,17 +39,17 @@ https://blog.theknightsofunity.com/monobehavior-calls-optimization/ there is an 
 +forest sprite
 
 - -fix camera jittering
-  -move our targetCamera futher if camera is scoped.
-  -weapon pickup has to be added
-  -health boxes has to be added
+  +move our targetCamera futher if camera is scoped.
+  +weapon pickup has to be added
+  +health boxes has to be added
   -random spawn of items has to be added
   -multiplayer what api to use?
 
--repairing sprite(like welding appearing near the tank, or plus signs near a tank)
--repairing animation
++repairing sprite(like welding appearing near the tank, or plus signs near a tank)
++repairing animation
 
-- -GameManager Monobehaviour script on GameManager GameObject:
-  -GameManager Singleton must have references to:
+- +GameManager Monobehaviour script on GameManager GameObject:
+  +GameManager Singleton must have references to:
 
   - +GameEventSO
     +InputEventSO

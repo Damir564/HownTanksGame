@@ -53,14 +53,14 @@ public class Fire : PlayerModule
 
     private void OnWeaponChanged()
     {
+        GameManager.Instance.PlayerEvents.RaiseWeaponImageAndCameraFollowChangeEvent(m_weaponValues.WeaponImage, m_head.transform.GetChild(1));
         OnScopeChanged();
         OnAmmoAmountChanged();
-        GameManager.Instance.PlayerEvents.RaiseWeaponImageAndCameraFollowChangeEvent(m_weaponValues.WeaponImage, m_head.transform.GetChild(1));
     }
 
     private void OnScopeChanged()
     {
-        GameManager.Instance.PlayerEvents.RaiseScopeChangedEvent(m_weaponValues.WeaponScope[m_scopingState]);
+        GameManager.Instance.PlayerEvents.RaiseScopeChangedEvent(m_weaponValues.WeaponScope[m_scopingState], m_weaponValues.WeaponScopeMultiplier[m_scopingState]);
     }
 
     private void OnAmmoAmountChanged()

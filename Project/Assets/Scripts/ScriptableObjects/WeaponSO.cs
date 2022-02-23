@@ -15,6 +15,7 @@ public class WeaponSO : ScriptableObject
     [SerializeField] private int m_weaponAllTotalAmmo;
     [SerializeField] private int m_weaponTotalAmmo;
     [SerializeField] private int[] m_weaponScope;
+    [SerializeField] private float[] m_weaponScopeMultiplier;
     [SerializeField] private Color m_weaponImage;
 
 
@@ -57,6 +58,10 @@ public class WeaponSO : ScriptableObject
     public int[] WeaponScope
     {
         get => m_weaponScope;
+    }
+    public float[] WeaponScopeMultiplier
+    {
+        get => m_weaponScopeMultiplier;
     }
     public Color WeaponImage
     {
