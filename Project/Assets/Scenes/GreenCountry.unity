@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 25682508}
   - component: {fileID: 25682509}
   - component: {fileID: 25682510}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2310,7 +2310,7 @@ GameObject:
   - component: {fileID: 109454098}
   - component: {fileID: 109454099}
   - component: {fileID: 109454100}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3286,7 +3286,7 @@ GameObject:
   - component: {fileID: 149858422}
   - component: {fileID: 149858423}
   - component: {fileID: 149858424}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (45)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5275,7 +5275,7 @@ GameObject:
   - component: {fileID: 251145549}
   - component: {fileID: 251145550}
   - component: {fileID: 251145551}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5759,7 +5759,7 @@ GameObject:
   - component: {fileID: 300511791}
   - component: {fileID: 300511792}
   - component: {fileID: 300511793}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9244,7 +9244,7 @@ GameObject:
   - component: {fileID: 518019032}
   - component: {fileID: 518019033}
   - component: {fileID: 518019034}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11331,7 +11331,7 @@ GameObject:
   - component: {fileID: 623029558}
   - component: {fileID: 623029559}
   - component: {fileID: 623029560}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11610,7 +11610,7 @@ GameObject:
   - component: {fileID: 636207844}
   - component: {fileID: 636207845}
   - component: {fileID: 636207846}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11889,7 +11889,7 @@ GameObject:
   - component: {fileID: 653605545}
   - component: {fileID: 653605546}
   - component: {fileID: 653605547}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13097,7 +13097,7 @@ GameObject:
   - component: {fileID: 713678062}
   - component: {fileID: 713678063}
   - component: {fileID: 713678064}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13292,7 +13292,7 @@ GameObject:
   - component: {fileID: 717524330}
   - component: {fileID: 717524331}
   - component: {fileID: 717524332}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13784,7 +13784,7 @@ GameObject:
   - component: {fileID: 749625301}
   - component: {fileID: 749625302}
   - component: {fileID: 749625303}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14391,7 +14391,7 @@ GameObject:
   - component: {fileID: 772052503}
   - component: {fileID: 772052504}
   - component: {fileID: 772052505}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14838,7 +14838,7 @@ GameObject:
   - component: {fileID: 777452341}
   - component: {fileID: 777452342}
   - component: {fileID: 777452343}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (49)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15369,7 +15369,7 @@ GameObject:
   - component: {fileID: 790379426}
   - component: {fileID: 790379427}
   - component: {fileID: 790379428}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15710,7 +15710,7 @@ GameObject:
   - component: {fileID: 798756511}
   - component: {fileID: 798756512}
   - component: {fileID: 798756513}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16719,6 +16719,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1193347729}
     m_Modifications:
+    - target: {fileID: 1232257566219664, guid: 22a1e941224e5e449b506208245e309d, type: 3}
+      propertyPath: m_TagString
+      value: HitableObject
+      objectReference: {fileID: 0}
     - target: {fileID: 4853175640178766, guid: 22a1e941224e5e449b506208245e309d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -18467,7 +18471,7 @@ GameObject:
   - component: {fileID: 925645016}
   - component: {fileID: 925645017}
   - component: {fileID: 925645018}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18870,7 +18874,7 @@ GameObject:
   - component: {fileID: 970004778}
   - component: {fileID: 970004779}
   - component: {fileID: 970004780}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21379,7 +21383,7 @@ GameObject:
   - component: {fileID: 1077422536}
   - component: {fileID: 1077422537}
   - component: {fileID: 1077422538}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21579,7 +21583,7 @@ GameObject:
   - component: {fileID: 1090274091}
   - component: {fileID: 1090274092}
   - component: {fileID: 1090274093}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21942,7 +21946,7 @@ GameObject:
   - component: {fileID: 1107977607}
   - component: {fileID: 1107977608}
   - component: {fileID: 1107977609}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22325,7 +22329,7 @@ GameObject:
   - component: {fileID: 1117892216}
   - component: {fileID: 1117892217}
   - component: {fileID: 1117892218}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23200,8 +23204,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1144549748}
-  - component: {fileID: 1144549747}
-  - component: {fileID: 1144549746}
+  - component: {fileID: 1144549750}
+  - component: {fileID: 1144549749}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -23209,7 +23213,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1144549746
+--- !u!4 &1144549748
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144549745}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.8770521, y: 2.861103, z: -10.361789}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1144549749
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23218,17 +23237,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1144549745}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b84c2d8dfe509a34fb59e2b81f8e1319, type: 3}
+  m_Script: {fileID: 11500000, guid: 6960e84d07fb87f47956e7a81d71c4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MessageBufferSize: 5120
-  MaxConnections: 100
-  MaxSentMessageQueueSize: 128
-  ConnectAddress: 127.0.0.1
-  ConnectPort: 7777
-  ServerListenPort: 7777
-  MessageSendMode: 0
---- !u!114 &1144549747
+  m_ProtocolType: 0
+  m_MaxPacketQueueSize: 128
+  m_MaxPayloadSize: 6144
+  m_HeartbeatTimeoutMS: 500
+  m_ConnectTimeoutMS: 1000
+  m_MaxConnectAttempts: 60
+  m_DisconnectTimeoutMS: 30000
+  ConnectionData:
+    Address: 127.0.0.1
+    Port: 7777
+    ServerListenAddress: 
+  DebugSimulator:
+    PacketDelayMS: 0
+    PacketJitterMS: 0
+    PacketDropRate: 0
+--- !u!114 &1144549750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23241,10 +23268,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RunInBackground: 1
-  LogLevel: 0
+  LogLevel: 1
   NetworkConfig:
     ProtocolVersion: 0
-    NetworkTransport: {fileID: 1144549746}
+    NetworkTransport: {fileID: 1144549749}
     PlayerPrefab: {fileID: 3494899634808751935, guid: 49aeb2980f933dc43b9264197a6cebc7, type: 3}
     NetworkPrefabs:
     - Override: 0
@@ -23267,21 +23294,6 @@ MonoBehaviour:
     LoadSceneTimeOut: 120
     SpawnTimeout: 1
     EnableNetworkLogs: 1
---- !u!4 &1144549748
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144549745}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8770521, y: 2.861103, z: -10.361789}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1145304322
 GameObject:
   m_ObjectHideFlags: 0
@@ -24787,7 +24799,7 @@ GameObject:
   - component: {fileID: 1239919639}
   - component: {fileID: 1239919640}
   - component: {fileID: 1239919641}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25415,7 +25427,7 @@ GameObject:
   - component: {fileID: 1277892460}
   - component: {fileID: 1277892461}
   - component: {fileID: 1277892462}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27234,7 +27246,7 @@ GameObject:
   - component: {fileID: 1365816372}
   - component: {fileID: 1365816373}
   - component: {fileID: 1365816374}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27571,7 +27583,7 @@ GameObject:
   - component: {fileID: 1384559997}
   - component: {fileID: 1384559998}
   - component: {fileID: 1384559999}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28238,7 +28250,7 @@ GameObject:
   - component: {fileID: 1416669542}
   - component: {fileID: 1416669543}
   - component: {fileID: 1416669544}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28517,7 +28529,7 @@ GameObject:
   - component: {fileID: 1424344288}
   - component: {fileID: 1424344289}
   - component: {fileID: 1424344290}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28920,7 +28932,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1438490354}
   - component: {fileID: 1438490355}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (46)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29545,7 +29557,7 @@ GameObject:
   - component: {fileID: 1485348075}
   - component: {fileID: 1485348076}
   - component: {fileID: 1485348077}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30328,7 +30340,7 @@ GameObject:
   - component: {fileID: 1547631118}
   - component: {fileID: 1547631119}
   - component: {fileID: 1547631120}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30750,7 +30762,7 @@ GameObject:
   - component: {fileID: 1573892713}
   - component: {fileID: 1573892714}
   - component: {fileID: 1573892715}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31006,7 +31018,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1590303778}
   - component: {fileID: 1590303779}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (50)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31356,7 +31368,7 @@ GameObject:
   - component: {fileID: 1612897031}
   - component: {fileID: 1612897032}
   - component: {fileID: 1612897033}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31635,7 +31647,7 @@ GameObject:
   - component: {fileID: 1614934340}
   - component: {fileID: 1614934341}
   - component: {fileID: 1614934342}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31887,7 +31899,7 @@ GameObject:
   - component: {fileID: 1628696623}
   - component: {fileID: 1628696624}
   - component: {fileID: 1628696625}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32974,7 +32986,7 @@ GameObject:
   - component: {fileID: 1683600576}
   - component: {fileID: 1683600577}
   - component: {fileID: 1683600578}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33517,7 +33529,7 @@ GameObject:
   - component: {fileID: 1705959389}
   - component: {fileID: 1705959390}
   - component: {fileID: 1705959391}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35195,7 +35207,7 @@ GameObject:
   - component: {fileID: 1764359933}
   - component: {fileID: 1764359934}
   - component: {fileID: 1764359935}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35558,7 +35570,7 @@ GameObject:
   - component: {fileID: 1770428039}
   - component: {fileID: 1770428040}
   - component: {fileID: 1770428041}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36557,7 +36569,7 @@ GameObject:
   - component: {fileID: 1814925534}
   - component: {fileID: 1814925535}
   - component: {fileID: 1814925536}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36896,7 +36908,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1819659557}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38652,7 +38664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1891787967}
   - component: {fileID: 1891787966}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Perimetr
   m_TagString: HitableObject
   m_Icon: {fileID: 0}
@@ -39003,7 +39015,7 @@ GameObject:
   - component: {fileID: 1921546199}
   - component: {fileID: 1921546200}
   - component: {fileID: 1921546201}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39801,7 +39813,7 @@ GameObject:
   - component: {fileID: 1983333843}
   - component: {fileID: 1983333844}
   - component: {fileID: 1983333845}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40632,7 +40644,7 @@ GameObject:
   - component: {fileID: 2016537172}
   - component: {fileID: 2016537173}
   - component: {fileID: 2016537174}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41013,7 +41025,7 @@ GameObject:
   - component: {fileID: 2053807700}
   - component: {fileID: 2053807702}
   - component: {fileID: 2053807701}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41930,7 +41942,7 @@ GameObject:
   - component: {fileID: 2086096655}
   - component: {fileID: 2086096656}
   - component: {fileID: 2086096657}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42545,7 +42557,7 @@ GameObject:
   - component: {fileID: 2097304723}
   - component: {fileID: 2097304724}
   - component: {fileID: 2097304725}
-  m_Layer: 4
+  m_Layer: 3
   m_Name: Water_0 (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

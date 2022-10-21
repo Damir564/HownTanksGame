@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
 
     [SerializeField] private PlayerModule[] playerModules;
@@ -35,18 +36,19 @@ public class PlayerController : MonoBehaviour
         get => m_playerValues;
     }
 
-    private void Awake()
+    // private void Awake()
+    // {
+    //     Physics2D.IgnoreLayerCollision(3, 6);
+    //     foreach (PlayerModule module in playerModules)
+    //         module.OnAwake();
+    // }
+
+    public override void OnNetworkSpawn()
     {
+        if(!IsOwner) return;
         Physics2D.IgnoreLayerCollision(3, 6);
         foreach (PlayerModule module in playerModules)
             module.OnAwake();
-    }
-
-
-    private void OnEnable()
-    {
-
-        // Input
         GameManager.Instance.InputEvents.MovementPerformedEvent += MovementPerformedEvent;
         GameManager.Instance.InputEvents.MovementCanceledEvent += MovementCanceledEvent;
         GameManager.Instance.InputEvents.AimingPerformedEvent += AimingPerformedEvent;
@@ -55,8 +57,23 @@ public class PlayerController : MonoBehaviour
         foreach (PlayerModule module in playerModules)
             module.OnOnEnable();
     }
-    private void OnDisable()
+
+
+    // private void OnEnable()
+    // {
+
+    //     // Input
+    //     GameManager.Instance.InputEvents.MovementPerformedEvent += MovementPerformedEvent;
+    //     GameManager.Instance.InputEvents.MovementCanceledEvent += MovementCanceledEvent;
+    //     GameManager.Instance.InputEvents.AimingPerformedEvent += AimingPerformedEvent;
+    //     GameManager.Instance.InputEvents.AimingCanceledEvent += AimingCanceledEvent;
+
+    //     foreach (PlayerModule module in playerModules)
+    //         module.OnOnEnable();
+    // }
+    public override void OnNetworkDespawn()
     {
+        if(!IsOwner) return;
         // Input
         GameManager.Instance.InputEvents.MovementPerformedEvent -= MovementPerformedEvent;
         GameManager.Instance.InputEvents.MovementCanceledEvent -= MovementCanceledEvent;
@@ -66,6 +83,17 @@ public class PlayerController : MonoBehaviour
         foreach (PlayerModule module in playerModules)
             module.OnOnDisable();
     }
+    // private void OnDisable()
+    // {
+    //     // Input
+    //     GameManager.Instance.InputEvents.MovementPerformedEvent -= MovementPerformedEvent;
+    //     GameManager.Instance.InputEvents.MovementCanceledEvent -= MovementCanceledEvent;
+    //     GameManager.Instance.InputEvents.AimingPerformedEvent -= AimingPerformedEvent;
+    //     GameManager.Instance.InputEvents.AimingCanceledEvent -= AimingCanceledEvent;
+
+    //     foreach (PlayerModule module in playerModules)
+    //         module.OnOnDisable();
+    // }
 
     //Input
     private void MovementPerformedEvent(Vector2 value)
@@ -93,6 +121,7 @@ public class PlayerController : MonoBehaviour
     // Movement & Rotation
     void FixedUpdate()
     {
+        if (!IsSpawned) return;
         if (m_isMovePressed)
             MovementHandler();
         if (m_isAimingPressed)
