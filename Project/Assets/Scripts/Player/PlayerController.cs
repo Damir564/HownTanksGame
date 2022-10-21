@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-
+        Physics2D.IgnoreLayerCollision(3, 6);
         foreach (PlayerModule module in playerModules)
             module.OnAwake();
     }

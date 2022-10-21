@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1822093461854596026}
   - component: {fileID: 895126226123305760}
   - component: {fileID: 624644364995945020}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SimpleBulletInit
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1822093463643234259}
   - {fileID: 1822093463586717673}
@@ -78,7 +79,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1822093461982531217}
   - component: {fileID: 1822093461982531310}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,6 +96,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.01, y: -0.884, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1822093463643234259}
   m_RootOrder: 0
@@ -110,6 +112,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -160,7 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1822093463586717673}
   - component: {fileID: 1822093463586717670}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,6 +180,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1822093461854596026}
   m_RootOrder: 1
@@ -360,7 +364,7 @@ GameObject:
   - component: {fileID: 1822093463643234259}
   - component: {fileID: 1822093463643234257}
   - component: {fileID: 1822093463643234256}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bullet
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -377,6 +381,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.07, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1822093461982531217}
   m_Father: {fileID: 1822093461854596026}
@@ -393,6 +398,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
